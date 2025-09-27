@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7s2105hmxa22"]
+[gd_scene load_steps=4 format=3 uid="uid://c7s2105hmxa22"]
 
 [ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="1_brvsl"]
-[ext_resource type="PackedScene" uid="uid://dqah76ms2b768" path="res://World.tscn" id="2_1nqvx"]
+[ext_resource type="PackedScene" uid="uid://dqah76ms2b768" path="res://Source/Level/World 3d/World.tscn" id="2_1nqvx"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1nqvx"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Node2D" type="Node2D"]
 
@@ -25,3 +28,7 @@ placeholder_text = "wHAT THE HELL"
 [node name="SubViewport" type="SubViewport" parent="."]
 
 [node name="Node3D2" parent="SubViewport" instance=ExtResource("2_1nqvx")]
+
+[node name="Dice Viewport" type="Sprite2D" parent="."]
+position = Vector2(615, 312)
+texture = SubResource("ViewportTexture_1nqvx")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvebhx051kr2j"]
+
+[ext_resource type="Script" uid="uid://3ppeeoqqved8" path="res://Source/DIE DIE DIE/Die Class/DieClass.gd" id="1_u0xod"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hlltd"]
+
+[node name="RigidBody3D" type="RigidBody3D"]
+script = ExtResource("1_u0xod")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_hlltd")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+[node name="Node3D" type="Node3D" parent="."]
