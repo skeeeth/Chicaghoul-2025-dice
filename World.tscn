@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqah76ms2b768"]
+
+[ext_resource type="Script" uid="uid://b4w5tes5m8ci" path="res://Source/Level/World 3d/world.gd" id="1_2dftf"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c6gwx"]
+viewport_path = NodePath("Node3D/SubViewport")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2dftf"]
+sun_angle_max = 189.49
+
+[sub_resource type="Sky" id="Sky_bcbcq"]
+sky_material = SubResource("ProceduralSkyMaterial_2dftf")
+
+[sub_resource type="Environment" id="Environment_js7pq"]
+background_mode = 2
+sky = SubResource("Sky_bcbcq")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_2dftf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5941207, 0)
+
+[node name="SubViewport" type="SubViewport" parent="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+texture = SubResource("ViewportTexture_c6gwx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_js7pq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5288913, 0)

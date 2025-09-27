@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7s2105hmxa22"]
+
+[ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="1_brvsl"]
+[ext_resource type="PackedScene" uid="uid://dqah76ms2b768" path="res://World.tscn" id="2_1nqvx"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 179.0
+offset_top = 67.0
+offset_right = 259.0
+offset_bottom = 147.0
+text = "CHAT"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_brvsl")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 18.0
+offset_top = 198.0
+offset_right = 818.0
+offset_bottom = 248.0
+placeholder_text = "wHAT THE HELL"
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Node3D2" parent="SubViewport" instance=ExtResource("2_1nqvx")]
