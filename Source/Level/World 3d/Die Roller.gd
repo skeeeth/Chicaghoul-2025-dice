@@ -11,8 +11,8 @@ func _ready() -> void:
 		dice.append(new_die)
 		add_child(new_die)
 	
-	freeze_and_float_dice()
-	roll()
+	#freeze_and_float_dice()
+	#roll()
 
 func freeze_and_float_dice():
 	for new_die in dice:
@@ -21,13 +21,24 @@ func freeze_and_float_dice():
 		new_die.position.y = randf() * y_range
 		#new_die.freeze = true
 		#new_die.visible = false
-		
+
+func _physics_process(_delta: float) -> void:
+	var lr:float = Input.get_axis("ui_left","ui_right")
+	if lr:
+		for d in dice:
+			d.apply_central_force(Vector3.LEFT * lr * 5)
+
+	var ud:float = Input.get_axis("ui_up","ui_down")
+	if ud:
+		for d in dice:
+			d.apply_central_force(Vector3.FORWARD * ud * 5)
+
 func roll():
 	for d in dice:
 		var popup = create_tween()
 		popup.set_parallel()
 		popup.tween_method(d.apply_central_force,
-				Vector3.UP * 40 * randf_range(0.7,1),
+				Vector3((randf()-0.5)*3,30,(randf()-0.5)*3) * randf_range(0.7,1),
 				Vector3.ZERO,0.7)
 		#d.apply_force(Vector3.UP * (20)) 
 		popup.tween_method(d.apply_torque,
@@ -38,3 +49,4 @@ func roll():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		roll()
+		#print(Vector3.UP)

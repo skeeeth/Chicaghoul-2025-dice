@@ -50,7 +50,7 @@ extends Node3D
 	#node_viewport.push_input(event)
 #
 #
-#func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+#\func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	## Get mesh size to detect edges and make conversions. This code only supports PlaneMesh and QuadMesh.
 	#var quad_mesh_size: Vector2 = node_quad.mesh.size
 #

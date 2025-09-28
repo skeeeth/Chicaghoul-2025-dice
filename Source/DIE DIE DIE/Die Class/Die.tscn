@@ -1,15 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvebhx051kr2j"]
+[gd_scene load_steps=7 format=3 uid="uid://dvebhx051kr2j"]
 
 [ext_resource type="Script" uid="uid://3ppeeoqqved8" path="res://Source/DIE DIE DIE/Die Class/DieClass.gd" id="1_u0xod"]
+[ext_resource type="Script" uid="uid://7it61584xc7g" path="res://Source/DIE DIE DIE/Die Class/ItemResourceClass.gd" id="2_5sj3s"]
+[ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="2_8xc3e"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u0xod"]
+friction = 0.2
+
+[sub_resource type="Resource" id="Resource_1shjc"]
+script = ExtResource("2_5sj3s")
+types = Array[int]([1, 0, 0, 1, 0, 0])
+metadata/_custom_type_script = "uid://7it61584xc7g"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hlltd"]
 
 [node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+rotation_edit_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_u0xod")
 script = ExtResource("1_u0xod")
+spriteData = SubResource("Resource_1shjc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_hlltd")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+visible = false
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="SpriteF" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+texture = ExtResource("2_8xc3e")
+
+[node name="SpriteL" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+axis = 0
+texture = ExtResource("2_8xc3e")
+
+[node name="SpriteD" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+axis = 1
+texture = ExtResource("2_8xc3e")
+
+[node name="SpriteR" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+axis = 0
+texture = ExtResource("2_8xc3e")
+
+[node name="SpriteB" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+texture = ExtResource("2_8xc3e")
+
+[node name="SpriteU" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+axis = 1
+texture = ExtResource("2_8xc3e")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]

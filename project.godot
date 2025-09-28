@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Dice"
-run/main_scene="uid://dqah76ms2b768"
+run/main_scene="uid://c7s2105hmxa22"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Faces="*res://Source/DIE DIE DIE/Faces/FacesSingleton.tscn"
 
 [input]
 

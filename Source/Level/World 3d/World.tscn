@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqah76ms2b768"]
+[gd_scene load_steps=10 format=3 uid="uid://dqah76ms2b768"]
 
 [ext_resource type="Script" uid="uid://vowyud8qq2ku" path="res://Source/Level/World 3d/Die Roller.gd" id="1_qdj8i"]
+[ext_resource type="Script" uid="uid://c7ey54ckyd5ik" path="res://Source/Level/World 3d/camera_3d.gd" id="2_hykbv"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_c6gwx"]
 viewport_path = NodePath("Node3D/SubViewport")
@@ -21,11 +22,19 @@ sky = SubResource("Sky_bcbcq")
 [sub_resource type="BoxShape3D" id="BoxShape3D_qdj8i"]
 size = Vector3(10, 1, 10)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hykbv"]
+size = Vector3(50, 50, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wh6fx"]
+size = Vector3(1, 50, 50)
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_qdj8i")
+y_range = -1.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.17364822, 0.9848077, 0, -0.9848077, 0.17364822, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 0.087155804, 0.9961947, 0, -0.9961947, 0.087155804, 0, 0, 2)
+script = ExtResource("2_hykbv")
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5941207, 0)
@@ -41,7 +50,34 @@ texture = SubResource("ViewportTexture_c6gwx")
 environment = SubResource("Environment_js7pq")
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.125, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_qdj8i")
+
+[node name="Front Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.125, 1.4104414)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Front Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+shape = SubResource("BoxShape3D_hykbv")
+
+[node name="BackWall2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackWall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+shape = SubResource("BoxShape3D_hykbv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -8.125, 10)
+shape = SubResource("BoxShape3D_wh6fx")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -8.125, 10)
+shape = SubResource("BoxShape3D_wh6fx")

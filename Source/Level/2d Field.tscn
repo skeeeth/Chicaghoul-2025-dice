@@ -1,34 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7s2105hmxa22"]
+[gd_scene load_steps=5 format=3 uid="uid://c7s2105hmxa22"]
 
-[ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="1_brvsl"]
+[ext_resource type="Script" uid="uid://c34w6bu1r0pps" path="res://Source/Level/2d_field.gd" id="1_g6hoy"]
 [ext_resource type="PackedScene" uid="uid://dqah76ms2b768" path="res://Source/Level/World 3d/World.tscn" id="2_1nqvx"]
+[ext_resource type="Script" uid="uid://dc4pngsku15ca" path="res://Source/Level/sub_viewport_container.gd" id="2_sdw6a"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1nqvx"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="Node2D" type="Node2D"]
-
-[node name="Button" type="Button" parent="."]
-offset_left = 179.0
-offset_top = 67.0
-offset_right = 259.0
-offset_bottom = 147.0
-text = "CHAT"
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_brvsl")
-
-[node name="TextEdit" type="TextEdit" parent="."]
-offset_left = 18.0
-offset_top = 198.0
-offset_right = 818.0
-offset_bottom = 248.0
-placeholder_text = "wHAT THE HELL"
-
-[node name="SubViewport" type="SubViewport" parent="."]
-
-[node name="Node3D2" parent="SubViewport" instance=ExtResource("2_1nqvx")]
+script = ExtResource("1_g6hoy")
 
 [node name="Dice Viewport" type="Sprite2D" parent="."]
-position = Vector2(615, 312)
+visible = false
+position = Vector2(615, 320.11)
 texture = SubResource("ViewportTexture_1nqvx")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." node_paths=PackedStringArray("viewport")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_sdw6a")
+viewport = NodePath("SubViewport")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+physics_object_picking = true
+render_target_update_mode = 4
+
+[node name="World" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_1nqvx")]
