@@ -5,6 +5,7 @@ signal used
 signal clicked(who:Unit)
 signal damage_taken(amount,attacker)
 
+
 var die:Die
 var pip_mod:int = 0
 var use_type:int = 2
@@ -17,7 +18,8 @@ var current_hp:int
 @onready var dummy_sprite:Sprite2D = $Sprite2D
 @onready var slot: PanelContainer = $HBoxContainer/PanelContainer
 @onready var hp_bar: ProgressBar = $HBoxContainer/VBoxContainer/ProgressBar
-
+var hover_border:StyleBox = preload("uid://cv1jild5pwpdy")
+var default_box:StyleBox = preload("uid://c27aqt620w33a")
 
 var locked_die_position:Vector3
 #set in vp contaniner ready
@@ -49,6 +51,10 @@ func use():
 	
 	targets.clear()
 	targets_req = -1
+	set_style_base()
+
+func set_style_base():
+	add_theme_stylebox_override("panel",default_box)
 
 func on_die_selection():
 	dummy_sprite.visible = true
@@ -66,3 +72,12 @@ func on_die_selection():
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("lmb"):
 		clicked.emit(self)
+
+
+func _on_mouse_entered() -> void:
+	add_theme_stylebox_override("panel",hover_border)
+
+
+func _on_mouse_exited() -> void:
+	if targets_req < 0:
+		set_style_base()

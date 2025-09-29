@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc80kys2ggc2w"]
+[gd_scene load_steps=4 format=3 uid="uid://cc80kys2ggc2w"]
 
+[ext_resource type="StyleBox" uid="uid://c27aqt620w33a" path="res://Assets/Visual/Placeholder/box.tres" id="1_1cqis"]
 [ext_resource type="Script" uid="uid://cuallaoqhb7i6" path="res://Source/Unit/Unit.gd" id="1_5pek8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tirjg"]
@@ -13,6 +14,7 @@ border_width_bottom = 4
 offset_left = 404.0
 offset_right = 804.0
 offset_bottom = 128.0
+theme_override_styles/panel = ExtResource("1_1cqis")
 script = ExtResource("1_5pek8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -51,3 +53,5 @@ value = 18.17
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
