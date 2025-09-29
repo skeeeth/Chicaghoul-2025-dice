@@ -1,10 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqah76ms2b768"]
+[gd_scene load_steps=8 format=3 uid="uid://dqah76ms2b768"]
 
 [ext_resource type="Script" uid="uid://vowyud8qq2ku" path="res://Source/Level/World 3d/Die Roller.gd" id="1_qdj8i"]
-[ext_resource type="Script" uid="uid://c7ey54ckyd5ik" path="res://Source/Level/World 3d/camera_3d.gd" id="2_hykbv"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_c6gwx"]
-viewport_path = NodePath("Node3D/SubViewport")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2dftf"]
 sky_top_color = Color(0.07021282, 0.094590016, 0.12593144, 1)
@@ -28,23 +24,13 @@ size = Vector3(50, 50, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wh6fx"]
 size = Vector3(1, 50, 50)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("cam")]
 script = ExtResource("1_qdj8i")
 y_range = -1.0
+cam = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.087155804, 0.9961947, 0, -0.9961947, 0.087155804, 0, 0, 2)
-script = ExtResource("2_hykbv")
-
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5941207, 0)
-visible = false
-
-[node name="SubViewport" type="SubViewport" parent="Node3D"]
-
-[node name="Sprite3D" type="Sprite3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-texture = SubResource("ViewportTexture_c6gwx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_js7pq")
@@ -81,3 +67,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -8.125, 10)
 shape = SubResource("BoxShape3D_wh6fx")
+
+[node name="Moonlight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+light_color = Color(0.56, 0.2744, 0.35532, 1)

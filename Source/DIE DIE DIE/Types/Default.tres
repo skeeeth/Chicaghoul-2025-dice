@@ -1,3 +1,8 @@
-[gd_resource type="Resource" format=3 uid="uid://pugvl1wcivt"]
+[gd_resource type="Resource" script_class="LimbData" load_steps=2 format=3 uid="uid://d2bi4e8nw4j7g"]
+
+[ext_resource type="Script" uid="uid://7it61584xc7g" path="res://Source/DIE DIE DIE/Die Class/ItemResourceClass.gd" id="1_sdp5c"]
 
 [resource]
+script = ExtResource("1_sdp5c")
+types = Array[int]([2, 0, 2, 2, 2, 2])
+metadata/_custom_type_script = "uid://7it61584xc7g"

@@ -1,18 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvebhx051kr2j"]
+[gd_scene load_steps=9 format=3 uid="uid://dvebhx051kr2j"]
 
 [ext_resource type="Script" uid="uid://3ppeeoqqved8" path="res://Source/DIE DIE DIE/Die Class/DieClass.gd" id="1_u0xod"]
 [ext_resource type="Script" uid="uid://7it61584xc7g" path="res://Source/DIE DIE DIE/Die Class/ItemResourceClass.gd" id="2_5sj3s"]
 [ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="2_8xc3e"]
+[ext_resource type="Texture2D" uid="uid://dsaqdkotnpm7u" path="res://Assets/Visual/Placeholder/diceWhite.png" id="4_1shjc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u0xod"]
 friction = 0.2
 
 [sub_resource type="Resource" id="Resource_1shjc"]
 script = ExtResource("2_5sj3s")
-types = Array[int]([1, 0, 0, 1, 0, 0])
+types = [1, 0, 0, 1, 0, 0]
 metadata/_custom_type_script = "uid://7it61584xc7g"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hlltd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86yp3"]
 
 [node name="RigidBody3D" type="RigidBody3D"]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
@@ -25,7 +28,7 @@ spriteData = SubResource("Resource_1shjc")
 shape = SubResource("BoxShape3D_hlltd")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-visible = false
+material = SubResource("StandardMaterial3D_86yp3")
 
 [node name="SpriteF" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
@@ -34,7 +37,7 @@ texture = ExtResource("2_8xc3e")
 [node name="SpriteL" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 axis = 0
-texture = ExtResource("2_8xc3e")
+texture = ExtResource("4_1shjc")
 
 [node name="SpriteD" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
