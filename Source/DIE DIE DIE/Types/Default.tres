@@ -4,5 +4,4 @@
 
 [resource]
 script = ExtResource("1_sdp5c")
-types = Array[int]([2, 0, 2, 2, 2, 2])
 metadata/_custom_type_script = "uid://7it61584xc7g"

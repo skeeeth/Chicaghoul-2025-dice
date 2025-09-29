@@ -8,7 +8,7 @@ var locked:bool = false
 
 var faceup_side:int = 5
 var camera:Camera3D
-@export var spriteData:LimbData
+@export var dieData:LimbData
 
 
 const directions:Array[Vector3] = [
@@ -23,7 +23,7 @@ const directions:Array[Vector3] = [
 @onready var face_sprites:Array[Sprite3D] = [$SpriteF, $SpriteL, $SpriteD, $SpriteR, $SpriteB, $SpriteU]
 
 func _ready() -> void:
-	set_faces_from_data(spriteData)
+	set_faces_from_data(dieData)
 
 func set_faces_from_data(data:LimbData):
 	for i in range(0,face_sprites.size()):
@@ -77,4 +77,5 @@ func select():
 	#tween.set_parallel()
 	#tween.tween_property(self,"quaternion",target,0.2)
 	
-	
+func get_face_type() -> Face:
+	return Faces.directory[dieData.types[faceup_side]]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7s2105hmxa22"]
+[gd_scene load_steps=8 format=3 uid="uid://c7s2105hmxa22"]
 
 [ext_resource type="Script" uid="uid://c34w6bu1r0pps" path="res://Source/Level/2d_field.gd" id="1_g6hoy"]
 [ext_resource type="PackedScene" uid="uid://dqah76ms2b768" path="res://Source/Level/World 3d/World.tscn" id="2_1nqvx"]
 [ext_resource type="Script" uid="uid://dc4pngsku15ca" path="res://Source/Level/sub_viewport_container.gd" id="2_sdw6a"]
 [ext_resource type="PackedScene" uid="uid://cc80kys2ggc2w" path="res://Source/Unit/UnitHP.tscn" id="4_m3ml2"]
 [ext_resource type="Script" uid="uid://7it61584xc7g" path="res://Source/DIE DIE DIE/Die Class/ItemResourceClass.gd" id="5_vmjd3"]
+[ext_resource type="Script" uid="uid://dq4lj4ye45p6e" path="res://Source/Level/targeting_control.gd" id="6_j1hex"]
 
 [sub_resource type="Resource" id="Resource_j1hex"]
 script = ExtResource("5_vmjd3")
@@ -27,38 +28,40 @@ physics_object_picking = true
 render_target_update_mode = 4
 
 [node name="World" parent="DiceContainer/SubViewport" node_paths=PackedStringArray("units") instance=ExtResource("2_1nqvx")]
-units = [NodePath("../../../Head"), NodePath("../../../ArmL"), NodePath("../../../ArmR"), NodePath("../../../LegL"), NodePath("../../../LegR")]
+units = [NodePath("../../../Player/Head"), NodePath("../../../Player/ArmL"), NodePath("../../../Player/ArmR"), NodePath("../../../Player/LegL"), NodePath("../../../Player/LegR")]
 
-[node name="Head" parent="." instance=ExtResource("4_m3ml2")]
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Head" parent="Player" instance=ExtResource("4_m3ml2")]
 offset_left = 113.0
 offset_top = 52.0
 offset_right = 513.0
 offset_bottom = 180.0
 unit_data = SubResource("Resource_j1hex")
-metadata/_edit_use_anchors_ = true
 
-[node name="ArmL" parent="." instance=ExtResource("4_m3ml2")]
+[node name="ArmL" parent="Player" instance=ExtResource("4_m3ml2")]
 offset_left = 71.0
 offset_top = 422.0
 offset_right = 471.0
 offset_bottom = 550.0
-metadata/_edit_use_anchors_ = true
 
-[node name="ArmR" parent="." instance=ExtResource("4_m3ml2")]
+[node name="ArmR" parent="Player" instance=ExtResource("4_m3ml2")]
 offset_left = 508.0
 offset_top = 305.0
 offset_right = 908.0
 offset_bottom = 433.0
 
-[node name="LegL" parent="." instance=ExtResource("4_m3ml2")]
+[node name="LegL" parent="Player" instance=ExtResource("4_m3ml2")]
 offset_left = 98.0
 offset_top = 795.0
 offset_right = 498.0
 offset_bottom = 923.0
-metadata/_edit_use_anchors_ = true
 
-[node name="LegR" parent="." instance=ExtResource("4_m3ml2")]
+[node name="LegR" parent="Player" instance=ExtResource("4_m3ml2")]
 offset_left = 569.0
 offset_top = 654.0
 offset_right = 969.0
 offset_bottom = 782.0
+
+[node name="Targeting Control" type="Node" parent="Player"]
+script = ExtResource("6_j1hex")
