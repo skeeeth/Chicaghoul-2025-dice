@@ -1,20 +1,30 @@
 extends Node
+class_name TargetControl
+#Handles targeting for allied parts
+#will call a units use() function when its target is valid
 
+var targeting_active:bool #set by RollControl
 @onready var player_parts:Array[Unit] = [
 		$"../Head", $"../ArmL", $"../ArmR", $"../LegL", $"../LegR"]
-
+@export var turn_manager:TurnManager
 
 func _ready() -> void:
 	for u in player_parts:
 		u.clicked.connect(on_unit_clicked)
+	
+	turn_manager.turn_ended.connect(on_turn_end)
 
 func on_unit_clicked(unit:Unit):
+	
+	#do nothing if we're not targeting
+	if !targeting_active: return 
+	
 	for p in player_parts:
 		#if a unit is already trying to target,
 		#  it will have a target req over 0
 		if p.targets_req > 0:
 			
-			#determine if target is valid
+			##determine if target is valid
 			var relationship:int #as Face targeting bit
 			if unit == p:#if targeter is target,
 				relationship = 1 #targeting self
@@ -41,3 +51,7 @@ func on_unit_clicked(unit:Unit):
 		return
 	
 	unit.targets_req = unit.die.get_face_type().targeting_req
+
+func on_turn_end():
+	for u in player_parts:
+		u.unselect()

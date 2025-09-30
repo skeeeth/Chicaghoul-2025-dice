@@ -22,7 +22,7 @@ directory = [NodePath("Attack"), NodePath("Block"), NodePath("Blank")]
 [node name="Attack" type="Node" parent="."]
 script = ExtResource("2_wytlj")
 texture = SubResource("AtlasTexture_5en7c")
-targeting_mask = 11
+targeting_mask = 12
 
 [node name="Block" type="Node" parent="."]
 script = ExtResource("4_5en7c")

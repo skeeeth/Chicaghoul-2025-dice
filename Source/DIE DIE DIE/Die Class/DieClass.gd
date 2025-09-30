@@ -2,8 +2,10 @@ extends RigidBody3D
 class_name Die
 
 signal selected
+signal hovered
+signal hover_ended
 
-var hovered:bool = false
+var is_hovered:bool = false
 var locked:bool = false
 
 var faceup_side:int = 5
@@ -47,10 +49,12 @@ func _on_sleeping_state_changed() -> void:
 	pass # Replace with function body.
 
 func _on_mouse_entered() -> void:
-	hovered = true
+	is_hovered = true
+	hovered.emit()
 
 func _on_mouse_exited() -> void:
-	hovered = false
+	is_hovered = false
+	hover_ended.emit()
 	pass # Replace with function body.
 
 func _input_event(_camera: Camera3D, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
@@ -60,8 +64,15 @@ func _input_event(_camera: Camera3D, event: InputEvent, event_position: Vector3,
 	#print(event_position)
 
 func select():
+	if locked:
+		return
+	
+	if !sleeping:
+		await sleeping_state_changed
+	
 	selected.emit()
 	locked = true
+	visible = false
 	#freeze = true
 	#collision_layer = 0
 	#collision_mask = 0

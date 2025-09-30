@@ -1,4 +1,6 @@
 extends Node3D
+class_name DiceRoller
+
 @export var initial_die_count:int = 5
 @export var xz_range:float = 3
 @export var y_range:float = 1.0
@@ -38,22 +40,16 @@ func _physics_process(_delta: float) -> void:
 		for d in dice:
 			d.apply_central_force(Vector3.FORWARD * ud * 5)
 
-func roll():
-	for d in dice:
-		d.freeze = false
-		d.collision_layer = 1
-		d.collision_mask = 1
-		var popup = create_tween()
-		popup.set_parallel()
-		popup.tween_method(d.apply_central_force,
-				Vector3((randf()-0.5)*3,30,(randf()-0.5)*3) * randf_range(0.7,1),
-				Vector3.ZERO,0.7)
-		#d.apply_force(Vector3.UP * (20)) 
-		popup.tween_method(d.apply_torque,
-				Vector3(randf(),randf(),randf())*5,
-				Vector3.ZERO,0.3).set_delay(0.1)
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		roll()
-		#print(Vector3.UP)
+func roll(die:Die):
+	die.freeze = false
+	die.collision_layer = 1
+	die.collision_mask = 1
+	var popup = create_tween()
+	popup.set_parallel()
+	popup.tween_method(die.apply_central_force,
+			Vector3((randf()-0.5)*3,30,(randf()-0.5)*3) * randf_range(0.7,1),
+			Vector3.ZERO,0.7)
+	#d.apply_force(Vector3.UP * (20)) 
+	popup.tween_method(die.apply_torque,
+			Vector3(randf(),randf(),randf())*5,
+			Vector3.ZERO,0.3).set_delay(0.1)
