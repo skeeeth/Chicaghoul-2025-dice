@@ -29,6 +29,7 @@ func _ready() -> void:
 func on_die_locked() ->void:
 	unlocked_dice -= 1
 	targeting.targeting_active = (unlocked_dice == 0)
+	print(unlocked_dice)
 	
 func on_die_unlock() -> void:
 	unlocked_dice += 1

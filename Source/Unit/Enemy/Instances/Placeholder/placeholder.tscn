@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://6mhmgxx0kimq"]
+
+[ext_resource type="Script" uid="uid://ym5kxxuh7bp3" path="res://Source/Unit/Enemy/EnemyBase.gd" id="1_7287y"]
+[ext_resource type="PackedScene" uid="uid://cc80kys2ggc2w" path="res://Source/Unit/UnitHP.tscn" id="2_n54uc"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_7287y")
+
+[node name="PanelContainer" parent="." instance=ExtResource("2_n54uc")]

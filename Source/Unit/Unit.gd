@@ -5,6 +5,7 @@ signal used
 signal clicked(who:Unit)
 signal damage_taken(amount,attacker)
 signal unlocked
+signal use_animation_finished #no animations yet
 
 var die:Die
 var pip_mod:int = 0
@@ -51,6 +52,8 @@ func use():
 	
 	targets.clear()
 	targets_req = -1
+	#TEMP, SHOULD CALL A REAL ANIMATION
+	create_tween().tween_callback(use_animation_finished.emit).set_delay(0.1)
 	set_style_base()
 
 func set_style_base():
