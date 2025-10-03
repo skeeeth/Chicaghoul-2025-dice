@@ -1,4 +1,8 @@
 extends Node2D
+class_name EnemyManager
+
+signal enemy_turn_finished
+
 @export var dice_world:DiceRoller
 @export var turn_manager:TurnManager
 @export var player_targeting_control:TargetControl
@@ -11,10 +15,16 @@ func spawn_enemy(scene:PackedScene):
 	new_enemy.pre_ready_setup()
 	for d in new_enemy.dice:
 		dice_world.add_child(d)
+		d.camera = dice_world.cam
 	add_child(new_enemy)
 	new_enemy.dice_roller = dice_world
 	new_enemy.enemy_target_pool = dice_world.units
 	new_enemy.roll()
 	turn_manager.turn_ended.connect(new_enemy.take_turn)
+	new_enemy.finished.connect(on_enemy_turn_finished)
 	for u in new_enemy.parts:
 		u.clicked.connect(player_targeting_control.on_unit_clicked)
+
+#propagate up
+func on_enemy_turn_finished():
+	enemy_turn_finished.emit()

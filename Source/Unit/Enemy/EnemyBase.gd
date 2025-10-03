@@ -1,6 +1,7 @@
 extends Node2D
 class_name Enemy
 
+signal finished
 
 const DIE_SCENE:PackedScene = preload("res://Source/DIE DIE DIE/Die Class/Die.tscn")
 var parts:Array[Unit]
@@ -29,6 +30,7 @@ func take_turn():
 	for u in parts:
 		u.use()
 		await u.use_animation_finished
+		u.unselect()
 	
 	roll()
 
@@ -37,13 +39,16 @@ func roll():
 	for d in dice:
 		dice_roller.roll(d)
 	
-	live_dice = dice.size()
 	#on_dice_settled assumes dice are only entering sleep,
 	# not waking up, so we have to set the number
-	# of live dice shortly after
+	# of live dice shortly after rolling starts
+	await get_tree().create_timer(0.05).timeout
+	live_dice = dice.size()
+
 
 func set_targets():
 	for u in parts:
+		u.die.select()
 		var possible_targets:Array[Unit]
 		var mask = u.die.get_face_type().targeting_mask
 		
@@ -59,7 +64,8 @@ func set_targets():
 		while u.targets_req > 0:
 			u.targets.append(possible_targets.pick_random())
 			u.targets_req -= 1
-			
+	finished.emit()
+	
 func on_die_settled():
 	live_dice -= 1
 	

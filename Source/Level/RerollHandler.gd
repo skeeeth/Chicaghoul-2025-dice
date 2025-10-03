@@ -13,7 +13,7 @@ var remaining:int = base_rerolls:
 	get:
 		return remaining
 
-var unlocked_dice:int = 5
+var unlocked_dice:int = 0
 
 func _ready() -> void:
 	for d in dice_roller.dice:
@@ -24,12 +24,12 @@ func _ready() -> void:
 		
 	button.pressed.connect(on_button_pressed)
 		
-	$"../End Turn".turn_ended.connect(on_turn_ended)
+	$"../End Turn".enemy_finished.connect(on_enemy_turn_ended)
 	
-func on_die_locked() ->void:
+func on_die_locked() -> void:
 	unlocked_dice -= 1
 	targeting.targeting_active = (unlocked_dice == 0)
-	print(unlocked_dice)
+	#print(unlocked_dice)
 	
 func on_die_unlock() -> void:
 	unlocked_dice += 1
@@ -55,7 +55,7 @@ func reroll() -> void:
 	if remaining == 0:
 		for d in dice_roller.dice:
 			if !d.locked:
-				d.select()
+				d.sleeping_state_changed.connect(d.select,4)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
@@ -64,6 +64,8 @@ func _input(event: InputEvent) -> void:
 func on_button_pressed():
 	reroll()
 
-func on_turn_ended():
+func on_enemy_turn_ended():
+	await get_tree().create_timer(Unit.SELECT_ANIMATION_TIME).timeout
+	unlocked_dice = dice_roller.dice.size()
 	reroll()
 	remaining = base_rerolls

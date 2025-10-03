@@ -87,13 +87,15 @@ offset_bottom = 1079.0
 grow_vertical = 0
 text = "Reroll (2/2)"
 
-[node name="End Turn" type="Button" parent="."]
+[node name="End Turn" type="Button" parent="." node_paths=PackedStringArray("enemy_manager", "player_control")]
 offset_left = 1597.0
 offset_top = 982.0
 offset_right = 1911.0
 offset_bottom = 1088.0
 text = "End Turn"
 script = ExtResource("8_v11ag")
+enemy_manager = NodePath("../Enemy Manager")
+player_control = NodePath("../Player/Targeting Control")
 
 [node name="Enemy Manager" type="Node2D" parent="." node_paths=PackedStringArray("dice_world", "turn_manager", "player_targeting_control")]
 position = Vector2(1098, 138)

@@ -45,7 +45,7 @@ func _on_sleeping_state_changed() -> void:
 			side = checked_side
 		#print(diff)
 		checked_side+= 1
-	
+	faceup_side = side
 	pass # Replace with function body.
 
 func _on_mouse_entered() -> void:
@@ -57,6 +57,7 @@ func _on_mouse_exited() -> void:
 	hover_ended.emit()
 	pass # Replace with function body.
 
+@warning_ignore("unused_parameter")
 func _input_event(_camera: Camera3D, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event.is_action_pressed("lmb"):
 		select()

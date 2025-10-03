@@ -12,7 +12,7 @@ func _ready() -> void:
 	for u in player_parts:
 		u.clicked.connect(on_unit_clicked)
 	
-	turn_manager.turn_ended.connect(on_turn_end)
+	turn_manager.enemy_finished.connect(on_enemy_finished)
 
 func on_unit_clicked(unit:Unit):
 	
@@ -47,11 +47,22 @@ func on_unit_clicked(unit:Unit):
 			return
 	
 	#if no units are currently targeting, a player can begin targeting
+	#
+	
 	if !player_parts.has(unit):
+		#if this isn't a player part dont start targeting
 		return
 	
+	if unit.uses_left == 0:
+		#if a unit has exactly 0 uses, it is exhausted for the turn
+		return
+	
+	
+	#start targeting
 	unit.targets_req = unit.die.get_face_type().targeting_req
-
-func on_turn_end():
+	unit.set_style_targeting()
+	
+func on_enemy_finished():
 	for u in player_parts:
 		u.unselect()
+		u.set_style_base()
