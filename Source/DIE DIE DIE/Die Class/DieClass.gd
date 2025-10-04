@@ -11,15 +11,15 @@ var locked:bool = false
 var faceup_side:int = 5
 var camera:Camera3D
 @export var dieData:LimbData
-
+const PIP_FRAMES = preload("uid://bmfmor00snwjo")
 
 const directions:Array[Vector3] = [
 	Vector3.FORWARD,
 	Vector3.LEFT,
-	Vector3.DOWN,
+	Vector3.UP,
 	Vector3.RIGHT,
 	Vector3.BACK,
-	Vector3.UP
+	Vector3.DOWN
 ]
 
 @onready var face_sprites:Array[Sprite3D] = [$SpriteF, $SpriteL, $SpriteD, $SpriteR, $SpriteB, $SpriteU]
@@ -29,18 +29,42 @@ func _ready() -> void:
 
 func set_faces_from_data(data:LimbData):
 	for i in range(0,face_sprites.size()):
-		face_sprites[i].texture = Faces.directory[data.types[i]].texture
-
+		var tex = Faces.directory[data.types[i]].texture
+		face_sprites[i].texture = tex
+		face_sprites[i].pixel_size = 1.0/tex.get_size().x #assumes square texture
+		
+		var pip_display = AnimatedSprite3D.new()
+		pip_display.sprite_frames = PIP_FRAMES
+		pip_display.frame = data.pips[i] - 1 
+		pip_display.speed_scale = 0
+		pip_display.axis = face_sprites[i].axis
+		pip_display.pixel_size = 0.5 / \
+				pip_display.sprite_frames.get_frame_texture(\
+				"default",pip_display.frame).get_size().x
+		
+		##inteded to move to corner but the math is fucked, ill fix later
+		#pip_display.position = Vector3(0.25,0.25,0.25)
+		#
+		#match pip_display.axis:
+			#0: #x axis
+				#pip_display.position -= (Vector3(0.25,0,0))
+			#1: #y axis
+				#pip_display.position -= (Vector3(0,0.25,0))
+			#2: #z axis
+				#pip_display.position -= (Vector3(0,0,0.25))
+		
+		face_sprites[i].add_child(pip_display)
+		
 #emitted from physics when dice settles,
 # reads face up side at this time
 func _on_sleeping_state_changed() -> void:
 	var up_trans:Vector3 = Vector3.UP*quaternion
-	var min_diff:float = 999
+	var min_diff:float = 0
 	var side:int = 0
 	var checked_side = 0
 	for d in directions:
 		var diff = (d-up_trans).length()
-		if diff < min_diff:
+		if diff > min_diff:
 			min_diff = diff
 			side = checked_side
 		#print(diff)

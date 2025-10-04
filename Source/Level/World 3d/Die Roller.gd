@@ -18,6 +18,7 @@ func _ready() -> void:
 	
 	for i in range(0,units.size()):
 		units[i].die = dice[i]
+		dice[i].dieData = units[i].unit_data
 	#freeze_and_float_dice()
 	#roll()
 

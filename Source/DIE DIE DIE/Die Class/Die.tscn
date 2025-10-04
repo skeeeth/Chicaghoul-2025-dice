@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvebhx051kr2j"]
+[gd_scene load_steps=7 format=3 uid="uid://dvebhx051kr2j"]
 
 [ext_resource type="Script" uid="uid://3ppeeoqqved8" path="res://Source/DIE DIE DIE/Die Class/DieClass.gd" id="1_u0xod"]
 [ext_resource type="Resource" uid="uid://d2bi4e8nw4j7g" path="res://Source/DIE DIE DIE/Types/Default.tres" id="2_1shjc"]
 [ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="2_8xc3e"]
-[ext_resource type="Texture2D" uid="uid://dsaqdkotnpm7u" path="res://Assets/Visual/Placeholder/diceWhite.png" id="4_1shjc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u0xod"]
 friction = 0.2
@@ -23,34 +22,47 @@ dieData = ExtResource("2_1shjc")
 shape = SubResource("BoxShape3D_hlltd")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+visible = false
 material = SubResource("StandardMaterial3D_86yp3")
 
 [node name="SpriteF" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+sorting_offset = -0.01
+texture_filter = 0
 texture = ExtResource("2_8xc3e")
 
 [node name="SpriteL" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.5, 0, 0)
+sorting_offset = -0.01
 axis = 0
-texture = ExtResource("4_1shjc")
+texture_filter = 0
+texture = ExtResource("2_8xc3e")
 
 [node name="SpriteD" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.5, 0)
+sorting_offset = -0.01
 axis = 1
+texture_filter = 0
 texture = ExtResource("2_8xc3e")
 
 [node name="SpriteR" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.5, 0, 0)
+sorting_offset = -0.01
 axis = 0
+texture_filter = 0
 texture = ExtResource("2_8xc3e")
 
 [node name="SpriteB" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, -0.5)
+sorting_offset = -0.01
+texture_filter = 0
 texture = ExtResource("2_8xc3e")
 
 [node name="SpriteU" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+sorting_offset = -0.01
 axis = 1
+texture_filter = 0
 texture = ExtResource("2_8xc3e")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

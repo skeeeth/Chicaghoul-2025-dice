@@ -1,18 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7s2105hmxa22"]
+[gd_scene load_steps=9 format=3 uid="uid://c7s2105hmxa22"]
 
 [ext_resource type="Script" uid="uid://c34w6bu1r0pps" path="res://Source/Level/2d_field.gd" id="1_g6hoy"]
 [ext_resource type="PackedScene" uid="uid://dqah76ms2b768" path="res://Source/Level/World 3d/World.tscn" id="2_1nqvx"]
 [ext_resource type="Script" uid="uid://dc4pngsku15ca" path="res://Source/Level/sub_viewport_container.gd" id="2_sdw6a"]
 [ext_resource type="PackedScene" uid="uid://cc80kys2ggc2w" path="res://Source/Unit/UnitHP.tscn" id="4_m3ml2"]
-[ext_resource type="Script" uid="uid://7it61584xc7g" path="res://Source/DIE DIE DIE/Die Class/ItemResourceClass.gd" id="5_vmjd3"]
 [ext_resource type="Script" uid="uid://dq4lj4ye45p6e" path="res://Source/Level/targeting_control.gd" id="6_j1hex"]
 [ext_resource type="Script" uid="uid://bcjbv88jvpqu3" path="res://Source/Level/RerollHandler.gd" id="7_c3iwq"]
 [ext_resource type="Script" uid="uid://cy7chstagykgi" path="res://Source/Level/TurnManager.gd" id="8_v11ag"]
 [ext_resource type="Script" uid="uid://dbkjwamglevpw" path="res://Source/Level/enemy_instancer.gd" id="9_6x6jb"]
-
-[sub_resource type="Resource" id="Resource_j1hex"]
-script = ExtResource("5_vmjd3")
-metadata/_custom_type_script = "uid://7it61584xc7g"
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_g6hoy")
@@ -40,7 +35,6 @@ offset_left = 113.0
 offset_top = 52.0
 offset_right = 513.0
 offset_bottom = 180.0
-unit_data = SubResource("Resource_j1hex")
 
 [node name="ArmL" parent="Player" instance=ExtResource("4_m3ml2")]
 offset_left = 71.0

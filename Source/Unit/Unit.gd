@@ -92,7 +92,7 @@ func on_die_selection():
 			die.get_face_type().texture,Vector2(64,64))
 	
 	face_display.pip_display.frame = \
-			unit_data.pips[die.faceup_side]
+			unit_data.pips[die.faceup_side] - 1
 	
 	var vp_position = die.camera.unproject_position(
 			die.position)\
@@ -112,6 +112,9 @@ func on_die_selection():
 	
 	
 func unselect():
+	if !die.locked:
+		return
+	print("%s, %s" % [die.faceup_side,unit_data.pips[die.faceup_side]])
 	unlocked.emit()
 	uses_left = -1
 	die.locked = false
@@ -126,6 +129,8 @@ func unselect():
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("lmb"):
 		clicked.emit(self)
+	#if event.is_action_pressed("rmb"):
+		#unselect()
 
 
 func _on_mouse_entered() -> void:

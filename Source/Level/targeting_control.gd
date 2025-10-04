@@ -16,8 +16,11 @@ func _ready() -> void:
 
 func on_unit_clicked(unit:Unit):
 	
-	#do nothing if we're not targeting
-	if !targeting_active: return 
+	#unselect if is ally and not targeting
+	if !targeting_active:
+		if player_parts.has(unit):
+			unit.unselect()
+		return
 	
 	for p in player_parts:
 		#if a unit is already trying to target,
@@ -47,12 +50,11 @@ func on_unit_clicked(unit:Unit):
 			return
 	
 	#if no units are currently targeting, a player can begin targeting
-	#
 	
+	#if this isn't a player part dont start targeting
 	if !player_parts.has(unit):
-		#if this isn't a player part dont start targeting
 		return
-	
+
 	if unit.uses_left == 0:
 		#if a unit has exactly 0 uses, it is exhausted for the turn
 		return

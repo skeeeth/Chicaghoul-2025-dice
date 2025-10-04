@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ddas1sbs36hlr" path="res://Source/Unit/2d_face_display.gd" id="1_m6yoa"]
 
 [node name="Face" type="Node2D" node_paths=PackedStringArray("face_texture", "pip_display")]
+visible = false
 script = ExtResource("1_m6yoa")
 face_texture = NodePath("FaceTexture")
 pip_display = NodePath("Pip Display")
