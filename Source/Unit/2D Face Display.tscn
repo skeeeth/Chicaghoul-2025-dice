@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba8l4kymsrm36"]
+
+[ext_resource type="SpriteFrames" uid="uid://bmfmor00snwjo" path="res://Assets/Visual/Placeholder/PipFrames.tres" id="1_iv3po"]
+[ext_resource type="Script" uid="uid://ddas1sbs36hlr" path="res://Source/Unit/2d_face_display.gd" id="1_m6yoa"]
+
+[node name="Face" type="Node2D" node_paths=PackedStringArray("face_texture", "pip_display")]
+script = ExtResource("1_m6yoa")
+face_texture = NodePath("FaceTexture")
+pip_display = NodePath("Pip Display")
+
+[node name="FaceTexture" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, 0)
+
+[node name="Pip Display" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 16)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("1_iv3po")
+speed_scale = 0.0

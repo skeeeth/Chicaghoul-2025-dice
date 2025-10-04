@@ -8,7 +8,14 @@ signal unlocked
 signal use_animation_finished #no animations yet
 
 var die:Die
-var pip_mod:int = 0
+var pip_mod:int = 0:
+	set(v):
+		pip_mod = v
+		if die:
+			face_display.pip_display.frame = \
+					unit_data.pips[die.faceup_side] - 1
+	get:
+		return pip_mod
 var uses_left:int = -1
 var targets:Array[Unit]
 var targets_req:int = -1
@@ -16,7 +23,9 @@ var targets_req:int = -1
 var current_hp:int
 
 @export var unit_data:LimbData = preload("uid://d2bi4e8nw4j7g")
-@onready var dummy_sprite:Sprite2D = $Sprite2D
+@export var face_display:FaceDisplay2D
+
+
 @onready var slot: PanelContainer = $HBoxContainer/PanelContainer
 @onready var hp_bar: ProgressBar = $HBoxContainer/VBoxContainer/ProgressBar
 var hover_border:StyleBox = preload("uid://cv1jild5pwpdy")
@@ -76,22 +85,28 @@ func set_style_targeting():
 	add_theme_stylebox_override("panel",targeting_box)
 
 func on_die_selection():
-	dummy_sprite.visible = true
-	var face_type = unit_data.types[die.faceup_side]
-	dummy_sprite.texture =  Faces.directory[face_type].texture
+	face_display.visible = true
+	#var face_type = unit_data.types[die.faceup_side]
+	#face_display.face_texture.texture =  die.get_face_type().texture
+	face_display.set_texture(
+			die.get_face_type().texture,Vector2(64,64))
 	
-	var vp_position = die.camera.unproject_position(die.position)\
+	face_display.pip_display.frame = \
+			unit_data.pips[die.faceup_side]
+	
+	var vp_position = die.camera.unproject_position(
+			die.position)\
 			+ viewport_offset
 	
-	dummy_sprite.global_position = vp_position
-	locked_die_position = dummy_sprite.position
+	face_display.global_position = vp_position
+	locked_die_position = face_display.position
 	
 	die.locked = true
 	
 	uses_left = die.get_face_type().uses
 	
 	var glide = create_tween()
-	glide.tween_property(dummy_sprite,
+	glide.tween_property(face_display,
 			"position",slot.position,
 			SELECT_ANIMATION_TIME).set_ease(Tween.EASE_IN_OUT)
 	
@@ -101,10 +116,10 @@ func unselect():
 	uses_left = -1
 	die.locked = false
 	var glide = create_tween()
-	glide.tween_property(dummy_sprite,
+	glide.tween_property(face_display,
 			"position",locked_die_position,
 			SELECT_ANIMATION_TIME).set_ease(Tween.EASE_IN_OUT)
-	glide.tween_property(dummy_sprite,"visible",false,0)
+	glide.tween_property(face_display,"visible",false,0)
 	glide.tween_property(die,"visible",true,0)
 	glide.tween_property(die,"locked",false,0)
 

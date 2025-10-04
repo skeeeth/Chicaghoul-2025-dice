@@ -2,18 +2,18 @@
 
 [ext_resource type="Script" uid="uid://doc8opfdsc0mm" path="res://Source/DIE DIE DIE/Faces/face_types.gd" id="1_pktno"]
 [ext_resource type="Script" uid="uid://chaytr3ev0eh8" path="res://Source/DIE DIE DIE/Faces/ATK.gd" id="2_wytlj"]
-[ext_resource type="Texture2D" uid="uid://dsaqdkotnpm7u" path="res://Assets/Visual/Placeholder/diceWhite.png" id="3_xp8x1"]
+[ext_resource type="Texture2D" uid="uid://brxmuju4yxm0j" path="res://Assets/Visual/Placeholder/colored_tilemap.png" id="3_q5u3h"]
 [ext_resource type="Script" uid="uid://bh1pdh3oo60il" path="res://Source/DIE DIE DIE/Faces/Block.gd" id="4_5en7c"]
 [ext_resource type="Script" uid="uid://bin40ytv7ad37" path="res://Source/DIE DIE DIE/Faces/Blank.gd" id="5_lo571"]
 [ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="6_tuu2c"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5en7c"]
-atlas = ExtResource("3_xp8x1")
-region = Rect2(0, 64, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_o24nc"]
+atlas = ExtResource("3_q5u3h")
+region = Rect2(54, 36, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tuu2c"]
-atlas = ExtResource("3_xp8x1")
-region = Rect2(64, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3186"]
+atlas = ExtResource("3_q5u3h")
+region = Rect2(90, 54, 8, 8)
 
 [node name="Node" type="Node" node_paths=PackedStringArray("directory")]
 script = ExtResource("1_pktno")
@@ -21,12 +21,12 @@ directory = [NodePath("Attack"), NodePath("Block"), NodePath("Blank")]
 
 [node name="Attack" type="Node" parent="."]
 script = ExtResource("2_wytlj")
-texture = SubResource("AtlasTexture_5en7c")
+texture = SubResource("AtlasTexture_o24nc")
 targeting_mask = 12
 
 [node name="Block" type="Node" parent="."]
 script = ExtResource("4_5en7c")
-texture = SubResource("AtlasTexture_tuu2c")
+texture = SubResource("AtlasTexture_g3186")
 targeting_mask = 11
 
 [node name="Blank" type="Node" parent="."]
