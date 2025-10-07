@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LimbData" load_steps=3 format=3 uid="uid://cxocfhjup41yh"]
+
+[ext_resource type="Script" uid="uid://7it61584xc7g" path="res://Source/DIE DIE DIE/Die Class/ItemResourceClass.gd" id="1_fyetc"]
+[ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="2_mtklu"]
+
+[resource]
+script = ExtResource("1_fyetc")
+types = Array[int]([2, 2, 2, 2, 2, 2])
+metadata/_custom_type_script = "uid://7it61584xc7g"

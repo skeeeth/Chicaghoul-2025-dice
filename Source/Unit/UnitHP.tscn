@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc80kys2ggc2w"]
+[gd_scene load_steps=7 format=3 uid="uid://cc80kys2ggc2w"]
 
 [ext_resource type="StyleBox" uid="uid://c27aqt620w33a" path="res://Assets/Visual/Placeholder/box.tres" id="1_1cqis"]
 [ext_resource type="Script" uid="uid://cuallaoqhb7i6" path="res://Source/Unit/Unit.gd" id="1_5pek8"]
 [ext_resource type="PackedScene" uid="uid://ba8l4kymsrm36" path="res://Source/Unit/2D Face Display.tscn" id="3_2n153"]
+[ext_resource type="Script" uid="uid://d2a52mw0m25rq" path="res://Source/Unit/NetDisplay.gd" id="4_54j84"]
+[ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="4_e1suh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tirjg"]
 draw_center = false
@@ -11,19 +13,29 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 
-[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("face_display")]
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("face_display", "die_display")]
 offset_left = 404.0
-offset_right = 804.0
+offset_right = 636.0
 offset_bottom = 128.0
 theme_override_styles/panel = ExtResource("1_1cqis")
 script = ExtResource("1_5pek8")
 face_display = NodePath("Face")
+die_display = NodePath("Net/PanelContainer")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(400, 128)
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLine" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "NAME"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -31,28 +43,130 @@ size_flags_vertical = 4
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_tirjg")
 
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/PanelContainer"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 color = Color(0.26293245, 0.26293245, 0.26293245, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-text = "NAME"
-horizontal_alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
+size_flags_vertical = 1
 mouse_filter = 1
 value = 18.17
 
 [node name="Face" parent="." instance=ExtResource("3_2n153")]
+visible = false
+
+[node name="Net" type="Node2D" parent="."]
+texture_filter = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Net" node_paths=PackedStringArray("texture_rects")]
+visible = false
+offset_left = 410.0
+offset_top = 7.0
+offset_right = 616.0
+offset_bottom = 284.0
+script = ExtResource("4_54j84")
+texture_rects = [NodePath("VBoxContainer/HBoxContainer/PanelContainer2/Head"), NodePath("VBoxContainer/HBoxContainer2/PanelContainer/Left"), NodePath("VBoxContainer/HBoxContainer2/PanelContainer2/Center"), NodePath("VBoxContainer/HBoxContainer2/PanelContainer3/Right"), NodePath("VBoxContainer/HBoxContainer3/PanelContainer2/DownOne"), NodePath("VBoxContainer/HBoxContainer4/PanelContainer2/DownTwo")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Net/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Net/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_1cqis")
+
+[node name="Head" type="TextureRect" parent="Net/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("4_e1suh")
+expand_mode = 4
+
+[node name="PanelContainer3" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Net/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Left" type="TextureRect" parent="Net/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("4_e1suh")
+expand_mode = 4
+
+[node name="PanelContainer2" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_1cqis")
+
+[node name="Center" type="TextureRect" parent="Net/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("4_e1suh")
+expand_mode = 4
+
+[node name="PanelContainer3" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Right" type="TextureRect" parent="Net/PanelContainer/VBoxContainer/HBoxContainer2/PanelContainer3"]
+layout_mode = 2
+texture = ExtResource("4_e1suh")
+expand_mode = 4
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Net/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_1cqis")
+
+[node name="DownOne" type="TextureRect" parent="Net/PanelContainer/VBoxContainer/HBoxContainer3/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("4_e1suh")
+expand_mode = 4
+
+[node name="PanelContainer3" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Net/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_1cqis")
+
+[node name="DownTwo" type="TextureRect" parent="Net/PanelContainer/VBoxContainer/HBoxContainer4/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("4_e1suh")
+expand_mode = 4
+
+[node name="PanelContainer3" type="PanelContainer" parent="Net/PanelContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

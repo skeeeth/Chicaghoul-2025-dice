@@ -7,15 +7,19 @@
 script = ExtResource("1_7287y")
 
 [node name="PanelContainer" parent="." instance=ExtResource("2_n54uc")]
+offset_left = 112.0
+offset_top = 58.0
+offset_right = 512.0
+offset_bottom = 186.0
 
 [node name="PanelContainer2" parent="." instance=ExtResource("2_n54uc")]
-offset_left = 117.0
-offset_top = 202.0
-offset_right = 517.0
-offset_bottom = 330.0
+offset_left = 92.0
+offset_top = 452.0
+offset_right = 492.0
+offset_bottom = 580.0
 
 [node name="PanelContainer3" parent="." instance=ExtResource("2_n54uc")]
-offset_left = 601.0
-offset_top = 521.0
-offset_right = 1001.0
-offset_bottom = 649.0
+offset_left = 150.0
+offset_top = 792.0
+offset_right = 550.0
+offset_bottom = 920.0

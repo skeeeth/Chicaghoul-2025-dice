@@ -31,7 +31,6 @@ func take_turn():
 		u.use()
 		await u.use_animation_finished
 		u.unselect()
-	
 	roll()
 
 

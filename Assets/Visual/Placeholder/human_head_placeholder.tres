@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://x7qncs1c0emn"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6x6jb"]
+load_path = "res://.godot/imported/diceguysketch.png-3548a747c595ebebe2de91314593bdf2.ctex"
+
+[resource]
+atlas = SubResource("CompressedTexture2D_6x6jb")
+region = Rect2(180, 9, 152, 162)

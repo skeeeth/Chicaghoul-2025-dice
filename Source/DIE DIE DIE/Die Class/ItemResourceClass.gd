@@ -13,3 +13,5 @@ class_name LimbData
 	0 as Faces.list]
 	
 @export var pips:Array[int] = [1,1,1,1,1,1]
+
+@export var texture:Texture2D = preload("uid://bv45n7yd5fdvp")

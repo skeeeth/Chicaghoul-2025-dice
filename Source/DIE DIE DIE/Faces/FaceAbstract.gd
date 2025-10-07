@@ -2,7 +2,8 @@
 extends Node
 class_name Face
 
-#signal animation_finished
+@warning_ignore("unused_signal")
+signal animation_finished #used in inherited use function
 
 @export var texture:Texture2D
 @export var targeting_req:int = 1

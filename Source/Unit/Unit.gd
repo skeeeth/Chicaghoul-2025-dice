@@ -25,9 +25,12 @@ var current_hp:int
 @export var unit_data:LimbData = preload("uid://d2bi4e8nw4j7g")
 @export var face_display:FaceDisplay2D
 @export var sprite:Sprite2D
+@export var die_display:DieDisplay
 
-@onready var slot: PanelContainer = $HBoxContainer/PanelContainer
-@onready var hp_bar: ProgressBar = $HBoxContainer/VBoxContainer/ProgressBar
+@onready var slot: PanelContainer =$VBoxContainer/HBoxContainer/PanelContainer
+@onready var hp_bar: ProgressBar = $VBoxContainer/HBoxContainer/ProgressBar
+@onready var name_line: Label = $VBoxContainer/NameLine
+
 var hover_border:StyleBox = preload("uid://cv1jild5pwpdy")
 var default_box:StyleBox = preload("uid://c27aqt620w33a")
 var exhausted_box:StyleBox = preload("uid://tfp525ky7uh4")
@@ -43,6 +46,8 @@ func _ready() -> void:
 	hp_bar.max_value = max_hp
 	current_hp = max_hp
 	hp_bar.value = current_hp
+	name_line.text = name
+	set_data(unit_data)
 #@export var dice_world:Node3D
 
 func take_damage(amount:int,from:Unit):
@@ -70,6 +75,7 @@ func use():
 		set_style_exhausted()
 	else:
 		set_style_base()
+	use_animation_finished.emit()
 
 func set_style_base():
 	add_theme_stylebox_override("panel",default_box)
@@ -125,13 +131,12 @@ func unselect():
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("lmb"):
 		clicked.emit(self)
-	#if event.is_action_pressed("rmb"):
-		#unselect()
+	if event.is_action_pressed("rmb"):
+		die_display.visible = !die_display.visible
 
 
 func _on_mouse_entered() -> void:
 	add_theme_stylebox_override("panel",hover_border)
-
 
 func _on_mouse_exited() -> void:
 	if !die.locked:
@@ -147,3 +152,14 @@ func _on_mouse_exited() -> void:
 		return
 	else:
 		set_style_exhausted()
+
+func on_death():
+	pass
+
+func set_data(data:LimbData):
+	die.dieData = data
+	die.set_faces_from_data(data)
+	unit_data = data
+	if sprite:
+		sprite.texture = data.texture
+	die_display.set_display(data)
