@@ -4,6 +4,7 @@ class_name Unit
 signal used
 signal clicked(who:Unit)
 signal damage_taken(amount,attacker)
+signal death(reference)
 signal unlocked
 signal use_animation_finished #no animations yet
 
@@ -19,10 +20,13 @@ var pip_mod:int = 0:
 var uses_left:int = -1
 var targets:Array[Unit]
 var targets_req:int = -1
-@export var max_hp:int = 8
 var current_hp:int
 
+@export_category("Stats")
+@export_flags("Head:1","Arm:2","Leg:4") var type = 8
+@export var max_hp:int = 8
 @export var unit_data:LimbData = preload("uid://d2bi4e8nw4j7g")
+@export_category("Nodes")
 @export var face_display:FaceDisplay2D
 @export var sprite:Sprite2D
 @export var die_display:DieDisplay
@@ -55,8 +59,7 @@ func take_damage(amount:int,from:Unit):
 	current_hp -= amount
 	hp_bar.value = current_hp
 	if current_hp <= 0:
-		#DIE DIE DIE THIS IS WHERE DEATH HAPPENS
-		pass #do nothing for now :3
+		on_death(abs(current_hp))
 
 func use():
 	used.emit()
@@ -128,6 +131,19 @@ func unselect():
 	glide.tween_property(die,"visible",true,0)
 	glide.tween_property(die,"locked",false,0)
 
+func on_death(overkill:int):
+	var fade = create_tween()
+	fade.set_parallel()
+	if sprite:
+		fade.tween_property(sprite,"modulate:a",0,1)
+	fade.tween_property(self,"modulate:a",0,1)
+	death.emit(self)
+	
+	if overkill == 0:
+		#clean cut, should activate replacement
+		pass
+
+
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("lmb"):
 		clicked.emit(self)
@@ -152,9 +168,6 @@ func _on_mouse_exited() -> void:
 		return
 	else:
 		set_style_exhausted()
-
-func on_death():
-	pass
 
 func set_data(data:LimbData):
 	die.dieData = data

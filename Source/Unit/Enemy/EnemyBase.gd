@@ -2,6 +2,7 @@ extends Node2D
 class_name Enemy
 
 signal finished
+signal full_death
 
 const DIE_SCENE:PackedScene = preload("res://Source/DIE DIE DIE/Die Class/Die.tscn")
 var parts:Array[Unit]
@@ -24,6 +25,7 @@ func pre_ready_setup():
 		new_die.collision_layer = 2
 		new_die.collision_mask = 2
 		new_die.sleeping_state_changed.connect(on_die_settled)
+		u.death.connect(on_part_death)
 		dice.append(new_die)
 
 func take_turn():
@@ -71,3 +73,10 @@ func on_die_settled():
 	if live_dice == 0:
 		set_targets()
 	
+
+func on_part_death(part:Unit):
+	parts.erase(part)
+	part.visible = false
+	if parts.size() == 0:
+		full_death.emit()
+		queue_free()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dvebhx051kr2j"]
 
 [ext_resource type="Script" uid="uid://3ppeeoqqved8" path="res://Source/DIE DIE DIE/Die Class/DieClass.gd" id="1_u0xod"]
-[ext_resource type="Resource" uid="uid://d2bi4e8nw4j7g" path="res://Source/DIE DIE DIE/Types/Default.tres" id="2_1shjc"]
+[ext_resource type="Resource" uid="uid://d2bi4e8nw4j7g" path="res://Source/DIE DIE DIE/Dice Types/Default.tres" id="2_1shjc"]
 [ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="2_8xc3e"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u0xod"]

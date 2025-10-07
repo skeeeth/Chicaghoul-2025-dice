@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LimbData" load_steps=3 format=3 uid="uid://bdv2dqk4n0q0"]
+
+[ext_resource type="Script" uid="uid://7it61584xc7g" path="res://Source/DIE DIE DIE/Die Class/ItemResourceClass.gd" id="1_nyn4m"]
+[ext_resource type="Texture2D" uid="uid://ddoskbmkr6qyi" path="res://Assets/Visual/Placeholder/Justice/Justice_rightlung.png" id="2_nyn4m"]
+
+[resource]
+script = ExtResource("1_nyn4m")
+texture = ExtResource("2_nyn4m")
+metadata/_custom_type_script = "uid://7it61584xc7g"

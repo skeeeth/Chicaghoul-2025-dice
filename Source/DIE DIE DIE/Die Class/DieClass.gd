@@ -36,6 +36,7 @@ func set_faces_from_data(data:LimbData):
 		var pip_display = AnimatedSprite3D.new()
 		pip_display.sprite_frames = PIP_FRAMES
 		pip_display.frame = data.pips[i] - 1 
+		pip_display.visible = data.pips[i] != 0
 		pip_display.speed_scale = 0
 		pip_display.axis = face_sprites[i].axis
 		pip_display.pixel_size = 0.5 / \

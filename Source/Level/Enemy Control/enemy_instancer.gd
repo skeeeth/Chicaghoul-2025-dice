@@ -6,6 +6,7 @@ signal enemy_turn_finished
 @export var dice_world:DiceRoller
 @export var turn_manager:TurnManager
 @export var player_targeting_control:TargetControl
+@export var pool:EnemyPool
 
 func _ready() -> void:
 	spawn_enemy(load("res://Source/Unit/Enemy/Instances/Placeholder/placeholder.tscn"))
@@ -22,9 +23,13 @@ func spawn_enemy(scene:PackedScene):
 	new_enemy.roll()
 	turn_manager.turn_ended.connect(new_enemy.take_turn)
 	new_enemy.finished.connect(on_enemy_turn_finished)
+	new_enemy.full_death.connect(on_full_death)
 	for u in new_enemy.parts:
 		u.clicked.connect(player_targeting_control.on_unit_clicked)
 
 #propagate up
 func on_enemy_turn_finished():
 	enemy_turn_finished.emit()
+
+func on_full_death():
+	spawn_enemy(pool.sequence.front())
