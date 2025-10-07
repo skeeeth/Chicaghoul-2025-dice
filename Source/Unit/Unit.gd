@@ -24,7 +24,7 @@ var current_hp:int
 
 @export var unit_data:LimbData = preload("uid://d2bi4e8nw4j7g")
 @export var face_display:FaceDisplay2D
-
+@export var sprite:Sprite2D
 
 @onready var slot: PanelContainer = $HBoxContainer/PanelContainer
 @onready var hp_bar: ProgressBar = $HBoxContainer/VBoxContainer/ProgressBar
@@ -58,7 +58,7 @@ func use():
 	var face_index = unit_data.types[die.faceup_side]
 	var pip_total = unit_data.pips[die.faceup_side] + pip_mod
 	
-	Faces.directory[face_index].use(
+	await Faces.directory[face_index].use(
 		self, targets, pip_total
 	)
 	
@@ -70,10 +70,6 @@ func use():
 		set_style_exhausted()
 	else:
 		set_style_base()
-	
-	#TEMP, SHOULD CALL A REAL ANIMATION
-	create_tween().tween_callback(use_animation_finished.emit).set_delay(0.1)
-
 
 func set_style_base():
 	add_theme_stylebox_override("panel",default_box)

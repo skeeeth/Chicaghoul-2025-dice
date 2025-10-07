@@ -8,3 +8,6 @@ func set_texture(texture:Texture2D,size:Vector2):
 	face_texture.scale.x = size.x / texture.get_size().x
 	face_texture.scale.y = size.y / texture.get_size().y
 	face_texture.texture = texture
+
+func set_pips(pips:int):
+	pip_display.frame = pips - 1
