@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d167actatkjjk" path="res://Assets/Visual/Placeholder/Justice/Justice_torso.png" id="5_ta7a3"]
 [ext_resource type="Texture2D" uid="uid://pqf02nmr15fu" path="res://Assets/Visual/Placeholder/Justice/Justice_leftlung.png" id="6_dkael"]
 [ext_resource type="Texture2D" uid="uid://47dnq2qumhfk" path="res://Assets/Visual/Placeholder/Justice/Justice_full.png" id="7_g0616"]
-[ext_resource type="PackedScene" uid="uid://cc80kys2ggc2w" path="res://Source/Unit/UnitHP.tscn" id="8_0s1f5"]
+[ext_resource type="PackedScene" uid="uid://cc80kys2ggc2w" path="res://Source/Unit/Unit.tscn" id="8_0s1f5"]
 [ext_resource type="Resource" uid="uid://cuqjcrgxhsuf3" path="res://Source/Unit/Enemy/Instances/Justice/HeadJustice.tres" id="9_5noji"]
 [ext_resource type="Resource" uid="uid://6j73eku2u2si" path="res://Source/Unit/Enemy/Instances/Justice/LeftLung.tres" id="10_gwcuf"]
 [ext_resource type="Resource" uid="uid://bdv2dqk4n0q0" path="res://Source/Unit/Enemy/Instances/Justice/RightLung.tres" id="11_owj1t"]

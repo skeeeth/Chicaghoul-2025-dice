@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvryp6yf6hghl"]
+
+[ext_resource type="Script" uid="uid://d2a52mw0m25rq" path="res://Source/Unit/NetDisplay.gd" id="1_1mayp"]
+[ext_resource type="StyleBox" uid="uid://c27aqt620w33a" path="res://Assets/Visual/Placeholder/box.tres" id="2_nht5y"]
+[ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="3_ge50y"]
+
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("texture_rects")]
+visible = false
+offset_left = 410.0
+offset_top = 7.0
+offset_right = 616.0
+offset_bottom = 284.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_1mayp")
+texture_rects = [NodePath("VBoxContainer/HBoxContainer/PanelContainer2/Head"), NodePath("VBoxContainer/HBoxContainer2/PanelContainer/Left"), NodePath("VBoxContainer/HBoxContainer2/PanelContainer2/Center"), NodePath("VBoxContainer/HBoxContainer2/PanelContainer3/Right"), NodePath("VBoxContainer/HBoxContainer3/PanelContainer2/DownOne"), NodePath("VBoxContainer/HBoxContainer4/PanelContainer2/DownTwo")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_nht5y")
+
+[node name="Head" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("3_ge50y")
+expand_mode = 4
+
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Left" type="TextureRect" parent="VBoxContainer/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("3_ge50y")
+expand_mode = 4
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_nht5y")
+
+[node name="Center" type="TextureRect" parent="VBoxContainer/HBoxContainer2/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("3_ge50y")
+expand_mode = 4
+
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Right" type="TextureRect" parent="VBoxContainer/HBoxContainer2/PanelContainer3"]
+layout_mode = 2
+texture = ExtResource("3_ge50y")
+expand_mode = 4
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_nht5y")
+
+[node name="DownOne" type="TextureRect" parent="VBoxContainer/HBoxContainer3/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("3_ge50y")
+expand_mode = 4
+
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_nht5y")
+
+[node name="DownTwo" type="TextureRect" parent="VBoxContainer/HBoxContainer4/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("3_ge50y")
+expand_mode = 4
+
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3

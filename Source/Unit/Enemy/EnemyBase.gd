@@ -72,7 +72,6 @@ func on_die_settled():
 	
 	if live_dice == 0:
 		set_targets()
-	
 
 func on_part_death(part:Unit):
 	parts.erase(part)

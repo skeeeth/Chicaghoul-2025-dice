@@ -2,6 +2,7 @@ extends Node2D
 class_name EnemyManager
 
 signal enemy_turn_finished
+signal enemy_spawned(enemy:Enemy)
 
 @export var dice_world:DiceRoller
 @export var turn_manager:TurnManager
@@ -26,10 +27,12 @@ func spawn_enemy(scene:PackedScene):
 	new_enemy.full_death.connect(on_full_death)
 	for u in new_enemy.parts:
 		u.clicked.connect(player_targeting_control.on_unit_clicked)
-
+	
+	enemy_spawned.emit(new_enemy)
 #propagate up
 func on_enemy_turn_finished():
 	enemy_turn_finished.emit()
 
 func on_full_death():
 	spawn_enemy(pool.sequence.front())
+	

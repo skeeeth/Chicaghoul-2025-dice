@@ -42,7 +42,7 @@ func set_faces_from_data(data:LimbData):
 		pip_display.pixel_size = 0.5 / \
 				pip_display.sprite_frames.get_frame_texture(\
 				"default",pip_display.frame).get_size().x
-		
+	
 		##inteded to move to corner but the math is fucked, ill fix later
 		#pip_display.position = Vector3(0.25,0.25,0.25)
 		#

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LimbData" load_steps=3 format=3 uid="uid://r514gnfmxry8"]
+
+[ext_resource type="Script" uid="uid://7it61584xc7g" path="res://Source/DIE DIE DIE/Die Class/ItemResourceClass.gd" id="1_5c8sk"]
+[ext_resource type="Texture2D" uid="uid://x7qncs1c0emn" path="res://Assets/Visual/Placeholder/human_head_placeholder.tres" id="2_5c8sk"]
+
+[resource]
+script = ExtResource("1_5c8sk")
+types = Array[int]([3, 3, 2, 4, 2, 2])
+pips = Array[int]([2, 1, 0, 1, 0, 0])
+texture = ExtResource("2_5c8sk")
+metadata/_custom_type_script = "uid://7it61584xc7g"

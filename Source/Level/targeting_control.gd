@@ -68,3 +68,4 @@ func on_enemy_finished():
 	for u in player_parts:
 		u.unselect()
 		u.set_style_base()
+		u.pip_mod = 0
