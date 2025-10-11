@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://6mhmgxx0kimq"]
+[gd_scene load_steps=5 format=3 uid="uid://6mhmgxx0kimq"]
 
 [ext_resource type="Script" uid="uid://ym5kxxuh7bp3" path="res://Source/Unit/Enemy/EnemyBase.gd" id="1_7287y"]
 [ext_resource type="PackedScene" uid="uid://cc80kys2ggc2w" path="res://Source/Unit/Unit.tscn" id="2_n54uc"]
+[ext_resource type="Resource" uid="uid://cnfq77yqjantu" path="res://Source/DIE DIE DIE/Dice Types/LARM.tres" id="3_q8o3u"]
 [ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="3_x6lti"]
 
 [node name="Enemy" type="Node2D"]
@@ -21,7 +22,9 @@ offset_left = 1333.0
 offset_top = 494.0
 offset_right = 1733.0
 offset_bottom = 622.0
+type = 14
 max_hp = 2
+unit_data = ExtResource("3_q8o3u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1424, 305)

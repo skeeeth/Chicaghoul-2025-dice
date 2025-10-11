@@ -10,7 +10,8 @@ func set_texture(texture:Texture2D,size:Vector2):
 	face_texture.texture = texture
 
 func set_pips(pips:int):
+	pip_display.visible = pips != 0
+	print(pips != 0)
 	if pips == 0:
-		pip_display.visible = false
 		return
 	pip_display.frame = pips - 1

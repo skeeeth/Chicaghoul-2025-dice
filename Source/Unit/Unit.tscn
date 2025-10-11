@@ -16,37 +16,32 @@ border_width_bottom = 4
 offset_right = 361.0
 offset_bottom = 393.0
 script = ExtResource("2_byrkg")
-face_display = NodePath("PanelContainer2/Face")
-die_display = NodePath("PanelContainer")
+face_display = NodePath("Face")
+die_display = NodePath("Die Display")
 
-[node name="PanelContainer2" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = ExtResource("1_00uxq")
 
-[node name="Face" parent="PanelContainer2" instance=ExtResource("3_pqxwy")]
-visible = false
-
-[node name="Net" type="Node2D" parent="PanelContainer2"]
-texture_filter = 1
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NameLine" type="Label" parent="PanelContainer2/VBoxContainer2"]
+[node name="NameLine" type="Label" parent="Panel/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 text = "NAME"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer2/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FaceSlot" type="PanelContainer" parent="PanelContainer2/VBoxContainer2"]
+[node name="FaceSlot" type="PanelContainer" parent="Panel/VBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -55,13 +50,13 @@ size_flags_vertical = 4
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_tirjg")
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer2/VBoxContainer2/FaceSlot"]
+[node name="ColorRect" type="ColorRect" parent="Panel/VBoxContainer2/FaceSlot"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 color = Color(0.26293245, 0.26293245, 0.26293245, 1)
 
-[node name="HpBar" type="ProgressBar" parent="PanelContainer2/VBoxContainer2"]
+[node name="HpBar" type="ProgressBar" parent="Panel/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -69,15 +64,21 @@ size_flags_vertical = 1
 mouse_filter = 1
 value = 18.17
 
-[node name="Token Container" type="HBoxContainer" parent="PanelContainer2/VBoxContainer2"]
+[node name="Token Container" type="HBoxContainer" parent="Panel/VBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" parent="." instance=ExtResource("4_py7ew")]
+[node name="Die Display" parent="." instance=ExtResource("4_py7ew")]
+z_index = -1
 layout_mode = 2
+mouse_filter = 1
 
-[connection signal="gui_input" from="PanelContainer2" to="PanelContainer2" method="_on_gui_input"]
-[connection signal="mouse_entered" from="PanelContainer2" to="PanelContainer2" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="PanelContainer2" to="PanelContainer2" method="_on_mouse_exited"]
+[node name="Face" parent="." instance=ExtResource("3_pqxwy")]
+visible = false
+z_index = 2
+
+[connection signal="gui_input" from="Panel" to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="Panel" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_mouse_exited"]

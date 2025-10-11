@@ -28,7 +28,7 @@ var current_hp:int
 
 @export_category("Stats")
 @export_flags("Head:1","Arm:2","Leg:4") var type = 8
-@export var max_hp:int = 0
+@export var max_hp:int = 9
 @export var unit_data:LimbData = preload("uid://d2bi4e8nw4j7g")
 @export_category("Nodes")
 @export var face_display:FaceDisplay2D
@@ -39,6 +39,7 @@ var current_hp:int
 @onready var hp_bar: ProgressBar = %HpBar
 @onready var name_line: Label = %NameLine
 @onready var token_container: HBoxContainer = %"Token Container"
+@onready var panel: PanelContainer = %Panel
 
 
 var hover_border:StyleBox = preload("uid://cv1jild5pwpdy")
@@ -87,13 +88,13 @@ func use():
 	use_animation_finished.emit()
 
 func set_style_base():
-	add_theme_stylebox_override("panel",default_box)
+	panel.add_theme_stylebox_override("panel",default_box)
 
 func set_style_exhausted():
-	add_theme_stylebox_override("panel",exhausted_box)
+	panel.add_theme_stylebox_override("panel",exhausted_box)
 	
 func set_style_targeting():
-	add_theme_stylebox_override("panel",targeting_box)
+	panel.add_theme_stylebox_override("panel",targeting_box)
 
 func on_die_selection():
 	face_display.visible = true
@@ -102,8 +103,8 @@ func on_die_selection():
 	face_display.set_texture(#HARDCODED SIZE HAS NEVER CAUSED AN ISSUE
 			die.get_face_type().texture,Vector2(64,64))
 	
-	face_display.pip_display.frame = \
-			unit_data.pips[die.faceup_side] - 1
+	face_display.set_pips(
+		unit_data.pips[die.faceup_side] + pip_mod)
 	
 	var vp_position = die.camera.unproject_position(
 			die.position)\
@@ -158,15 +159,19 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("rmb"):
 		die_display.visible = !die_display.visible
 
+	##DEBUG DEV INPUT
+	if event.is_action_pressed("mmb"):
+		clean_cut.emit(self)
+
 
 func _on_mouse_entered() -> void:
-	add_theme_stylebox_override("panel",hover_border)
+	panel.add_theme_stylebox_override("panel",hover_border)
 
 func _on_mouse_exited() -> void:
 	if !die.locked:
 		set_style_base()
 		return
-	
+
 	if targets_req > 0:
 		set_style_targeting()
 		return

@@ -62,8 +62,8 @@ units = [NodePath("../../../Player/Head"), NodePath("../../../Player/ArmL"), Nod
 [node name="Head" parent="Player" node_paths=PackedStringArray("sprite") instance=ExtResource("4_m3ml2")]
 offset_left = 113.0
 offset_top = 52.0
-offset_right = 256.0
-offset_bottom = 180.0
+offset_right = 369.0
+offset_bottom = 214.0
 type = 9
 unit_data = ExtResource("4_u7swl")
 sprite = NodePath("../Node2D/Head")
@@ -71,29 +71,29 @@ sprite = NodePath("../Node2D/Head")
 [node name="ArmL" parent="Player" instance=ExtResource("4_m3ml2")]
 offset_left = 71.0
 offset_top = 422.0
-offset_right = 203.0
-offset_bottom = 550.0
+offset_right = 327.0
+offset_bottom = 584.0
 type = 10
 
 [node name="ArmR" parent="Player" instance=ExtResource("4_m3ml2")]
 offset_left = 706.0
 offset_top = 421.0
-offset_right = 829.0
-offset_bottom = 549.0
+offset_right = 962.0
+offset_bottom = 583.0
 type = 10
 
 [node name="LegL" parent="Player" instance=ExtResource("4_m3ml2")]
 offset_left = 77.0
 offset_top = 735.0
-offset_right = 245.0
-offset_bottom = 863.0
+offset_right = 333.0
+offset_bottom = 897.0
 type = 12
 
 [node name="LegR" parent="Player" instance=ExtResource("4_m3ml2")]
 offset_left = 698.0
 offset_top = 710.0
-offset_right = 900.0
-offset_bottom = 838.0
+offset_right = 954.0
+offset_bottom = 872.0
 type = 12
 
 [node name="Targeting Control" type="Node" parent="Player" node_paths=PackedStringArray("turn_manager")]
@@ -101,7 +101,7 @@ script = ExtResource("6_j1hex")
 turn_manager = NodePath("../../End Turn")
 
 [node name="Node2D" type="Node2D" parent="Player"]
-z_index = -1
+z_index = -3
 position = Vector2(209, 72)
 
 [node name="Diceguysketch" type="Sprite2D" parent="Player/Node2D"]
@@ -174,6 +174,7 @@ enemy_manager = NodePath("../Enemy Manager")
 player_parts = [NodePath("../Player/Head"), NodePath("../Player/ArmL"), NodePath("../Player/ArmR"), NodePath("../Player/LegL"), NodePath("../Player/LegR")]
 
 [node name="HBoxContainer" parent="Upgrade Control" instance=ExtResource("14_7lnom")]
+z_index = 1
 offset_left = 968.0
 offset_top = 202.0
 offset_right = 1790.0
@@ -183,6 +184,7 @@ offset_bottom = 802.0
 z_index = 1
 offset_right = 1937.0
 offset_bottom = 1110.0
+mouse_filter = 2
 color = Color(0.05, 0.05, 0.05, 0.5294118)
 
 [connection signal="pressed" from="End Turn" to="End Turn" method="_on_pressed"]

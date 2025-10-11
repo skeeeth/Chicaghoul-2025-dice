@@ -3,6 +3,7 @@ class_name EnemyManager
 
 signal enemy_turn_finished
 signal enemy_spawned(enemy:Enemy)
+signal combat_over
 
 @export var dice_world:DiceRoller
 @export var turn_manager:TurnManager
@@ -28,11 +29,12 @@ func spawn_enemy(scene:PackedScene):
 	for u in new_enemy.parts:
 		u.clicked.connect(player_targeting_control.on_unit_clicked)
 	
-	enemy_spawned.emit(new_enemy)
+	enemy_spawned.emit.call_deferred(new_enemy)
 #propagate up
 func on_enemy_turn_finished():
 	enemy_turn_finished.emit()
 
 func on_full_death():
+	combat_over.emit()
 	spawn_enemy(pool.sequence.front())
 	

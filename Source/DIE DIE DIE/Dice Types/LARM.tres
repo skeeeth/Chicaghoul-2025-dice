@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LimbData" load_steps=4 format=3 uid="uid://cnfq77yqjantu"]
+
+[ext_resource type="Script" uid="uid://7it61584xc7g" path="res://Source/DIE DIE DIE/Die Class/ItemResourceClass.gd" id="1_shqtu"]
+[ext_resource type="Texture2D" uid="uid://hecblkdjgv4o" path="res://Assets/Visual/Placeholder/diceguysketch.png" id="2_shqtu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv8t7"]
+atlas = ExtResource("2_shqtu")
+region = Rect2(-9, 179, 207, 432)
+
+[resource]
+script = ExtResource("1_shqtu")
+texture = SubResource("AtlasTexture_uv8t7")
+metadata/_custom_type_script = "uid://7it61584xc7g"
