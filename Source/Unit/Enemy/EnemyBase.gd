@@ -11,6 +11,8 @@ var enemy_target_pool:Array[Unit]
 
 var dice_roller:DiceRoller
 var live_dice:int = 0
+var target_lines:Array[Array]
+
 #called before being added to scene tree
 #finds all children and gives them dice
 func pre_ready_setup():
@@ -27,6 +29,10 @@ func pre_ready_setup():
 		new_die.sleeping_state_changed.connect(on_die_settled)
 		u.death.connect(on_part_death)
 		dice.append(new_die)
+
+func _draw() -> void:
+	for a in target_lines:
+		draw_line(a[0]-position,a[1]-position,Color.GRAY)
 
 func take_turn():
 	for u in parts:
@@ -48,6 +54,7 @@ func roll():
 
 
 func set_targets():
+	target_lines.clear()
 	for u in parts:
 		u.die.select()
 		var possible_targets:Array[Unit]
@@ -63,8 +70,12 @@ func set_targets():
 		
 		u.targets_req = u.die.get_face_type().targeting_req
 		while u.targets_req > 0:
-			u.targets.append(possible_targets.pick_random())
+			var target = possible_targets.pick_random()
+			u.targets.append(target)
+			var points = [u.global_position,target.global_position]
+			target_lines.append(points)
 			u.targets_req -= 1
+	queue_redraw()
 	finished.emit()
 	
 func on_die_settled():
