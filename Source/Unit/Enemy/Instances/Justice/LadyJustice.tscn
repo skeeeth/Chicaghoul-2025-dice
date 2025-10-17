@@ -20,6 +20,9 @@ metadata/_custom_type_script = "uid://ym5kxxuh7bp3"
 texture_filter = 1
 position = Vector2(1537, 627)
 
+[node name="JusticeTorso" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("5_ta7a3")
+
 [node name="JusticeHead" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("2_5g1dw")
 
@@ -29,9 +32,6 @@ texture = ExtResource("3_gwcuf")
 [node name="JusticeSword" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("4_owj1t")
 
-[node name="JusticeTorso" type="Sprite2D" parent="Sprites"]
-texture = ExtResource("5_ta7a3")
-
 [node name="JusticeLeftlung" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("6_dkael")
 
@@ -39,27 +39,27 @@ texture = ExtResource("6_dkael")
 visible = false
 texture = ExtResource("7_g0616")
 
-[node name="Lady Justice" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("8_0s1f5")]
-offset_left = 1688.0
-offset_top = 35.0
-offset_right = 1920.0
-offset_bottom = 163.0
-type = 9
-unit_data = ExtResource("9_5noji")
-sprite = NodePath("../Sprites/JusticeHead")
-
 [node name="Left Lung" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("8_0s1f5")]
-offset_left = 819.0
-offset_top = 216.0
-offset_right = 1051.0
-offset_bottom = 344.0
+offset_left = 1062.0
+offset_top = 215.0
+offset_right = 1294.0
+offset_bottom = 343.0
 unit_data = ExtResource("10_gwcuf")
 sprite = NodePath("../Sprites/JusticeLeftlung")
 
 [node name="Right Lung" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("8_0s1f5")]
-offset_left = 1213.0
-offset_top = 337.0
-offset_right = 1445.0
-offset_bottom = 465.0
+offset_left = 1267.0
+offset_top = 477.0
+offset_right = 1499.0
+offset_bottom = 605.0
 unit_data = ExtResource("11_owj1t")
 sprite = NodePath("../Sprites/JusticeRightlung")
+
+[node name="Lady Justice" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("8_0s1f5")]
+offset_left = 1615.0
+offset_top = 200.0
+offset_right = 1847.0
+offset_bottom = 328.0
+type = 9
+unit_data = ExtResource("9_5noji")
+sprite = NodePath("../Sprites/JusticeHead")
