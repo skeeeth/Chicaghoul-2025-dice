@@ -30,6 +30,7 @@ func spawn_enemy(scene:PackedScene):
 		u.clicked.connect(player_targeting_control.on_unit_clicked)
 	
 	enemy_spawned.emit.call_deferred(new_enemy)
+
 #propagate up
 func on_enemy_turn_finished():
 	enemy_turn_finished.emit()

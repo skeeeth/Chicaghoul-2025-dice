@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc80kys2ggc2w"]
+[gd_scene load_steps=9 format=3 uid="uid://cc80kys2ggc2w"]
 
 [ext_resource type="StyleBox" uid="uid://c27aqt620w33a" path="res://Assets/Visual/Placeholder/box.tres" id="1_00uxq"]
 [ext_resource type="Script" uid="uid://cuallaoqhb7i6" path="res://Source/Unit/Unit.gd" id="2_byrkg"]
 [ext_resource type="PackedScene" uid="uid://ba8l4kymsrm36" path="res://Source/Unit/2D Face Display.tscn" id="3_pqxwy"]
 [ext_resource type="PackedScene" uid="uid://bvryp6yf6hghl" path="res://Source/Unit/DieDisplay.tscn" id="4_py7ew"]
+[ext_resource type="Texture2D" uid="uid://brxmuju4yxm0j" path="res://Assets/Visual/Placeholder/colored_tilemap.png" id="5_byrkg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tirjg"]
 draw_center = false
@@ -12,12 +13,20 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" node_paths=PackedStringArray("face_display", "die_display")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqxwy"]
+atlas = ExtResource("5_byrkg")
+region = Rect2(89, 53, 10, 10)
+
+[sub_resource type="LabelSettings" id="LabelSettings_byrkg"]
+
+[node name="HBoxContainer" type="HBoxContainer" node_paths=PackedStringArray("face_display", "die_display", "_block_display", "block_label")]
 offset_right = 361.0
 offset_bottom = 393.0
 script = ExtResource("2_byrkg")
 face_display = NodePath("Face")
 die_display = NodePath("Die Display")
+_block_display = NodePath("BlockDisplay")
+block_label = NodePath("BlockDisplay/Block Sprite/Block Label")
 
 [node name="Panel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
@@ -78,6 +87,24 @@ mouse_filter = 1
 [node name="Face" parent="." instance=ExtResource("3_pqxwy")]
 visible = false
 z_index = 2
+
+[node name="BlockDisplay" type="Node2D" parent="."]
+visible = false
+
+[node name="Block Sprite" type="Sprite2D" parent="BlockDisplay"]
+texture_filter = 1
+position = Vector2(-51.999996, 58.999996)
+scale = Vector2(10, 10)
+texture = SubResource("AtlasTexture_pqxwy")
+
+[node name="Block Label" type="Label" parent="BlockDisplay/Block Sprite"]
+offset_left = -4.2000003
+offset_top = 0.3
+offset_right = 35.8
+offset_bottom = 23.3
+scale = Vector2(0.2, 0.2)
+text = "1"
+label_settings = SubResource("LabelSettings_byrkg")
 
 [connection signal="gui_input" from="Panel" to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="Panel" to="." method="_on_mouse_entered"]

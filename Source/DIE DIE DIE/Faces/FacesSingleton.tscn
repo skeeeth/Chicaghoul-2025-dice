@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddwks1qqpmhm5"]
+[gd_scene load_steps=16 format=3 uid="uid://ddwks1qqpmhm5"]
 
 [ext_resource type="Script" uid="uid://doc8opfdsc0mm" path="res://Source/DIE DIE DIE/Faces/face_types.gd" id="1_pktno"]
 [ext_resource type="Script" uid="uid://chaytr3ev0eh8" path="res://Source/DIE DIE DIE/Faces/ATK.gd" id="2_wytlj"]
@@ -30,9 +30,13 @@ region = Rect2(27, 72, 8, 8)
 atlas = ExtResource("3_q5u3h")
 region = Rect2(9, 72, 8, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0w4a"]
+atlas = ExtResource("3_q5u3h")
+region = Rect2(36, 54, 8, 8)
+
 [node name="Node" type="Node" node_paths=PackedStringArray("directory")]
 script = ExtResource("1_pktno")
-directory = [NodePath("Attack"), NodePath("Block"), NodePath("Blank"), NodePath("Amp"), NodePath("Weaken")]
+directory = [NodePath("Attack"), NodePath("Block"), NodePath("Blank"), NodePath("Amp"), NodePath("Weaken"), NodePath("Vulnerable")]
 
 [node name="Attack" type="Node" parent="."]
 script = ExtResource("2_wytlj")
@@ -62,6 +66,8 @@ targeting_mask = 14
 
 [node name="Vulnerable" type="Node" parent="."]
 script = ExtResource("9_k80ek")
+texture = SubResource("AtlasTexture_n0w4a")
+targeting_mask = 14
 
 [node name="Constrict" type="Node" parent="."]
 script = ExtResource("7_q5u3h")

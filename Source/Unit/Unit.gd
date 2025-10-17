@@ -7,7 +7,9 @@ class_name Unit
 
 signal used
 signal clicked(who:Unit)
+signal damage_incoming(amount)
 signal damage_taken(amount,attacker)
+signal block_incoming(amount:int,source:Unit)
 signal death(reference)
 signal unlocked
 signal use_animation_finished #no animations yet
@@ -25,6 +27,14 @@ var uses_left:int = -1
 var targets:Array[Unit]
 var targets_req:int = -1
 var current_hp:int
+var incoming_mod:int = 0
+var block:int = 0:
+	set(v):
+		block = v
+		_block_display.visible = block > 0
+		block_label.text = str(block)
+	get:
+		return block
 
 @export_category("Stats")
 @export_flags("Head:1","Arm:2","Leg:4") var type = 8
@@ -34,6 +44,8 @@ var current_hp:int
 @export var face_display:FaceDisplay2D
 @export var sprite:Sprite2D
 @export var die_display:DieDisplay
+@export var _block_display:Node2D
+@export var block_label:Label
 
 @onready var slot: PanelContainer = %FaceSlot
 @onready var hp_bar: ProgressBar = %HpBar
@@ -62,11 +74,25 @@ func _ready() -> void:
 #@export var dice_world:Node3D
 
 func take_damage(amount:int,from:Unit):
-	damage_taken.emit(amount,from)
-	current_hp -= amount
+	var total_damage = amount
+	#notify modifiers
+	damage_incoming.emit(amount)
+	total_damage += incoming_mod #apply modifiers
+	
+	var health_loss = total_damage - block
+	health_loss = max(health_loss,0) #if block is > damage, take zero
+	current_hp -= health_loss
 	hp_bar.value = current_hp
+	damage_taken.emit(total_damage,from)
+	incoming_mod = 0 #reset
 	if current_hp <= 0:
 		on_death(abs(current_hp))
+
+func apply_block(amount:int,from:Unit):
+	block_incoming.emit(amount,from)
+	amount += incoming_mod
+	block += amount
+	incoming_mod = 0
 
 func use():
 	used.emit()
@@ -192,5 +218,9 @@ func set_data(data:LimbData):
 
 func add_token(token_type:PackedScene,source:Unit):
 	var new_token:StatusToken = token_type.instantiate()
-	token_type.apply(source,self)
+	new_token.apply(source,self)
+	
+
+func on_enemy_turn_end():
+	block = 0
 	
