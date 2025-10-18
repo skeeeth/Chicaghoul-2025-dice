@@ -14,6 +14,8 @@ signal death(reference)
 signal unlocked
 signal use_animation_finished #no animations yet
 signal clean_cut(reference:Unit)
+@warning_ignore("unused_signal")
+signal special_action_code(code:int) #called on face
 
 var die:Die
 var pip_mod:int = 0:
@@ -26,7 +28,14 @@ var pip_mod:int = 0:
 var uses_left:int = -1
 var targets:Array[Unit]
 var targets_req:int = -1
-var current_hp:int
+var current_hp:int:
+	set(v):
+		current_hp = v
+		hp_bar.value = current_hp
+		hp_label.text = "%s/%s" % [current_hp,max_hp]
+	get:
+		return current_hp
+
 var incoming_mod:int = 0
 var block:int = 0:
 	set(v):
@@ -46,6 +55,7 @@ var block:int = 0:
 @export var die_display:DieDisplay
 @export var _block_display:Node2D
 @export var block_label:Label
+@export var hp_label:Label
 
 @onready var slot: PanelContainer = %FaceSlot
 @onready var hp_bar: ProgressBar = %HpBar
@@ -82,7 +92,7 @@ func take_damage(amount:int,from:Unit):
 	var health_loss = total_damage - block
 	health_loss = max(health_loss,0) #if block is > damage, take zero
 	current_hp -= health_loss
-	hp_bar.value = current_hp
+
 	damage_taken.emit(total_damage,from)
 	incoming_mod = 0 #reset
 	if current_hp <= 0:

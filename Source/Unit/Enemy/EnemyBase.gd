@@ -13,6 +13,8 @@ var dice_roller:DiceRoller
 var live_dice:int = 0
 var target_lines:Array[Array]
 
+var spawn_list:Array[Unit]
+
 #called before being added to scene tree
 #finds all children and gives them dice
 func pre_ready_setup():
@@ -36,21 +38,25 @@ func _draw() -> void:
 
 func take_turn():
 	for u in parts:
-		u.use()
+		if u.targets.size() > 0:
+			u.use()
 		await u.use_animation_finished
 		u.unselect()
+		
+	for u in spawn_list:
+		parts.append(u)
 	roll()
 
-
 func roll():
-	for d in dice:
-		dice_roller.roll(d)
-	
+	#var dice_rolled:int = 0
+	for u in parts:
+		dice_roller.roll(u.die)
+		#dice_rolled += 1
 	#on_dice_settled assumes dice are only entering sleep,
 	# not waking up, so we have to set the number
 	# of live dice shortly after rolling starts
 	await get_tree().create_timer(0.05).timeout
-	live_dice = dice.size()
+	live_dice = parts.size()
 
 
 func set_targets():
@@ -62,9 +68,11 @@ func set_targets():
 		
 		if mask & 2: #if allies are targetable
 			possible_targets.append_array(parts)
-			if !mask & 1:
-				possible_targets.erase(u)
-
+			possible_targets.erase(u) #dont automattically include self
+			
+		if mask & 1:
+			possible_targets.append(u)
+		
 		if mask & 4: 
 			possible_targets.append_array(enemy_target_pool)
 		

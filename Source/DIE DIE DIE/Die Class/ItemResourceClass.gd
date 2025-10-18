@@ -10,7 +10,7 @@ class_name LimbData
 	0 as Faces.list,
 	0 as Faces.list,
 	0 as Faces.list,
-	0 as Faces.list]
+	1 as Faces.list]
 	
 @export var pips:Array[int] = [1,1,1,1,1,1]
 

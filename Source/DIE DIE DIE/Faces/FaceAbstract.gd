@@ -11,6 +11,13 @@ signal animation_finished #used in inherited use function
 const _2D_FACE_DISPLAY = preload("uid://ba8l4kymsrm36")
 
 @export_flags("SELF:1","ALLIES:2","ENEMY:4") var targeting_mask = 8
+var sound:AudioStreamPlayer
+
+func _ready() -> void:
+	for n in get_children():
+		if n is AudioStreamPlayer:
+			sound = n
+
 
 @abstract
 func use(source:Unit,targets:Array[Unit],pips:int) -> Signal
@@ -29,5 +36,7 @@ func texture_side_slam_animation(source:Unit,target:Unit,pips:int) -> Signal:
 			.set_ease(Tween.EASE_IN_OUT) #maybe different trans?
 	
 	slam.tween_callback(dummy_face.queue_free)
+	if sound:
+		sound.play()
 	return slam.finished
 	

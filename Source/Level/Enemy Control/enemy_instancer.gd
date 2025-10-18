@@ -11,7 +11,7 @@ signal combat_over
 @export var pool:EnemyPool
 
 func _ready() -> void:
-	spawn_enemy(load("res://Source/Unit/Enemy/Instances/Placeholder/placeholder.tscn"))
+	spawn_enemy(load("res://Source/Unit/Enemy/Instances/Egg/Egg.tscn"))
 
 func spawn_enemy(scene:PackedScene):
 	var new_enemy:Enemy = scene.instantiate()

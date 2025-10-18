@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmkqh2o32q4wt"
+path="res://.godot/imported/Horror Scary Arm Slicing Off.wav-517951542f0e7672e130ea190ea88abd.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Horror Scary Arm Slicing Off.wav"
+dest_files=["res://.godot/imported/Horror Scary Arm Slicing Off.wav-517951542f0e7672e130ea190ea88abd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

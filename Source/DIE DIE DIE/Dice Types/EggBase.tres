@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LimbData" load_steps=3 format=3 uid="uid://c05k4jukarcjd"]
+
+[ext_resource type="Script" uid="uid://7it61584xc7g" path="res://Source/DIE DIE DIE/Die Class/ItemResourceClass.gd" id="1_bhmi0"]
+[ext_resource type="Texture2D" uid="uid://dkk57p32cfc8u" path="res://Assets/Visual/Placeholder/Egg/egg_body.png" id="2_bhmi0"]
+
+[resource]
+script = ExtResource("1_bhmi0")
+types = Array[int]([6, 6, 7, 6, 8, 9])
+texture = ExtResource("2_bhmi0")
+metadata/_custom_type_script = "uid://7it61584xc7g"

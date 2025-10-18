@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=3 uid="uid://bdduag2a6j3p0"]
+
+[ext_resource type="Script" uid="uid://pchu6imhub0n" path="res://Source/Unit/Enemy/Instances/Egg/egg.gd" id="1_kb7nq"]
+[ext_resource type="Texture2D" uid="uid://dkk57p32cfc8u" path="res://Assets/Visual/Placeholder/Egg/egg_body.png" id="2_kb7nq"]
+[ext_resource type="Texture2D" uid="uid://ct4xkxgikvh8u" path="res://Assets/Visual/Placeholder/Egg/egg_fullbody.png" id="3_7d6xd"]
+[ext_resource type="Texture2D" uid="uid://c0jc00cq5lhle" path="res://Assets/Visual/Placeholder/Egg/egg_leftarm.png" id="4_pgwuc"]
+[ext_resource type="Texture2D" uid="uid://bijsyvyyltffh" path="res://Assets/Visual/Placeholder/Egg/egg_leftleg.png" id="5_swr7l"]
+[ext_resource type="Texture2D" uid="uid://d0n1ga34prn8" path="res://Assets/Visual/Placeholder/Egg/egg_rightarm.png" id="6_dgcab"]
+[ext_resource type="Texture2D" uid="uid://mpxslojaafjk" path="res://Assets/Visual/Placeholder/Egg/egg_rightleg.png" id="7_63pn1"]
+[ext_resource type="PackedScene" uid="uid://cc80kys2ggc2w" path="res://Source/Unit/Unit.tscn" id="8_7d6xd"]
+[ext_resource type="Resource" uid="uid://c05k4jukarcjd" path="res://Source/DIE DIE DIE/Dice Types/EggBase.tres" id="9_pgwuc"]
+[ext_resource type="Resource" uid="uid://c2y3sbphkfhh3" path="res://Source/DIE DIE DIE/Dice Types/EggLA.tres" id="10_50v5w"]
+[ext_resource type="Resource" uid="uid://bixuu7rhtyfpd" path="res://Source/DIE DIE DIE/Dice Types/EggRA.tres" id="11_1543h"]
+[ext_resource type="Resource" uid="uid://bfidavlj1op6h" path="res://Source/DIE DIE DIE/Dice Types/EggLL.tres" id="12_k05uj"]
+[ext_resource type="Resource" uid="uid://d03yi6x7b4pan" path="res://Source/DIE DIE DIE/Dice Types/EggRL.tres" id="13_lra0s"]
+
+[node name="Egg" type="Node2D" node_paths=PackedStringArray("disable_list", "torso")]
+script = ExtResource("1_kb7nq")
+disable_list = [NodePath("Left Arm"), NodePath("Right Arm"), NodePath("Left Leg"), NodePath("Right Leg")]
+torso = NodePath("Egg")
+metadata/_custom_type_script = "uid://ym5kxxuh7bp3"
+
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(1517, 680)
+
+[node name="EggBody" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("2_kb7nq")
+
+[node name="EggFullbody" type="Sprite2D" parent="Sprites"]
+visible = false
+texture = ExtResource("3_7d6xd")
+
+[node name="EggLeftarm" type="Sprite2D" parent="Sprites"]
+z_index = -1
+position = Vector2(123.71, 0)
+texture = ExtResource("4_pgwuc")
+
+[node name="EggLeftleg" type="Sprite2D" parent="Sprites"]
+z_index = -1
+position = Vector2(0, -266.175)
+texture = ExtResource("5_swr7l")
+
+[node name="EggRightarm" type="Sprite2D" parent="Sprites"]
+z_index = -1
+position = Vector2(-118.39, 0)
+texture = ExtResource("6_dgcab")
+
+[node name="EggRightleg" type="Sprite2D" parent="Sprites"]
+z_index = -1
+position = Vector2(0, -266.175)
+texture = ExtResource("7_63pn1")
+
+[node name="Egg" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("8_7d6xd")]
+offset_left = 1450.0
+offset_top = 46.0
+offset_right = 1811.0
+offset_bottom = 439.0
+max_hp = 16
+unit_data = ExtResource("9_pgwuc")
+sprite = NodePath("../Sprites/EggBody")
+
+[node name="Left Arm" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("8_7d6xd")]
+visible = false
+offset_left = 1039.0
+offset_top = 182.0
+offset_right = 1169.0
+offset_bottom = 575.0
+type = 10
+unit_data = ExtResource("10_50v5w")
+sprite = NodePath("../Sprites/EggLeftarm")
+
+[node name="Right Arm" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("8_7d6xd")]
+visible = false
+offset_left = 1729.0
+offset_top = 177.0
+offset_right = 2090.0
+offset_bottom = 570.0
+type = 10
+unit_data = ExtResource("11_1543h")
+sprite = NodePath("../Sprites/EggRightarm")
+
+[node name="Left Leg" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("8_7d6xd")]
+visible = false
+offset_left = 1173.0
+offset_top = 753.0
+offset_right = 1534.0
+offset_bottom = 1146.0
+type = 12
+unit_data = ExtResource("12_k05uj")
+sprite = NodePath("../Sprites/EggLeftleg")
+
+[node name="Right Leg" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("8_7d6xd")]
+visible = false
+offset_left = 1754.0
+offset_top = 768.0
+offset_right = 2115.0
+offset_bottom = 1161.0
+type = 12
+unit_data = ExtResource("13_lra0s")
+sprite = NodePath("../Sprites/EggRightleg")

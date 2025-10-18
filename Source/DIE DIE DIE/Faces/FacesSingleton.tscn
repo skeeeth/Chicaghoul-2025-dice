@@ -1,14 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://ddwks1qqpmhm5"]
+[gd_scene load_steps=21 format=3 uid="uid://ddwks1qqpmhm5"]
 
 [ext_resource type="Script" uid="uid://doc8opfdsc0mm" path="res://Source/DIE DIE DIE/Faces/face_types.gd" id="1_pktno"]
 [ext_resource type="Script" uid="uid://chaytr3ev0eh8" path="res://Source/DIE DIE DIE/Faces/ATK.gd" id="2_wytlj"]
 [ext_resource type="Texture2D" uid="uid://brxmuju4yxm0j" path="res://Assets/Visual/Placeholder/colored_tilemap.png" id="3_q5u3h"]
 [ext_resource type="Script" uid="uid://bh1pdh3oo60il" path="res://Source/DIE DIE DIE/Faces/Block.gd" id="4_5en7c"]
+[ext_resource type="AudioStream" uid="uid://dmkqh2o32q4wt" path="res://Assets/Audio/Horror Scary Arm Slicing Off.wav" id="4_yhcek"]
 [ext_resource type="Script" uid="uid://bin40ytv7ad37" path="res://Source/DIE DIE DIE/Faces/Blank.gd" id="5_lo571"]
+[ext_resource type="AudioStream" uid="uid://d3xn5p30pqoyk" path="res://Assets/Audio/Horror Scary Bone Break Quick 01.wav" id="6_2l41r"]
 [ext_resource type="Script" uid="uid://c2n3bny0amxea" path="res://Source/DIE DIE DIE/Faces/amp.gd" id="7_o24nc"]
 [ext_resource type="Script" uid="uid://bxuxkju6nsoh7" path="res://Source/DIE DIE DIE/Faces/node.gd" id="7_q5u3h"]
 [ext_resource type="Script" uid="uid://w0jna0jksq1a" path="res://Source/DIE DIE DIE/Faces/Weaken.gd" id="8_o24nc"]
 [ext_resource type="Script" uid="uid://cabf2afyygxs7" path="res://Source/DIE DIE DIE/Faces/Vulnerable.gd" id="9_k80ek"]
+[ext_resource type="Script" uid="uid://ej8k7w1r8xf6" path="res://Source/DIE DIE DIE/Faces/SpecialAction.gd" id="10_iguf7"]
+[ext_resource type="AudioStream" uid="uid://cg4dyylu6862f" path="res://Assets/Audio/Horror Scary Bone Cracking And Breaking Short Fast 01.wav" id="14_provi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o24nc"]
 atlas = ExtResource("3_q5u3h")
@@ -34,19 +38,29 @@ region = Rect2(9, 72, 8, 8)
 atlas = ExtResource("3_q5u3h")
 region = Rect2(36, 54, 8, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhcek"]
+atlas = ExtResource("3_q5u3h")
+region = Rect2(135, 27, 8, 6)
+
 [node name="Node" type="Node" node_paths=PackedStringArray("directory")]
 script = ExtResource("1_pktno")
-directory = [NodePath("Attack"), NodePath("Block"), NodePath("Blank"), NodePath("Amp"), NodePath("Weaken"), NodePath("Vulnerable")]
+directory = [NodePath("Attack"), NodePath("Block"), NodePath("Blank"), NodePath("Amp"), NodePath("Weaken"), NodePath("Vulnerable"), NodePath("HatchLeftArm"), NodePath("HatchRightArm"), NodePath("HatchLeftLeg"), NodePath("HatchRightLeg")]
 
 [node name="Attack" type="Node" parent="."]
 script = ExtResource("2_wytlj")
 texture = SubResource("AtlasTexture_o24nc")
 targeting_mask = 12
 
+[node name="SoundEffect" type="AudioStreamPlayer" parent="Attack"]
+stream = ExtResource("4_yhcek")
+
 [node name="Block" type="Node" parent="."]
 script = ExtResource("4_5en7c")
 texture = SubResource("AtlasTexture_g3186")
 targeting_mask = 11
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="Block"]
+stream = ExtResource("6_2l41r")
 
 [node name="Blank" type="Node" parent="."]
 script = ExtResource("5_lo571")
@@ -71,3 +85,38 @@ targeting_mask = 14
 
 [node name="Constrict" type="Node" parent="."]
 script = ExtResource("7_q5u3h")
+
+[node name="HatchLeftArm" type="Node" parent="."]
+script = ExtResource("10_iguf7")
+texture = SubResource("AtlasTexture_yhcek")
+targeting_mask = 9
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="HatchLeftArm"]
+stream = ExtResource("14_provi")
+
+[node name="HatchRightArm" type="Node" parent="."]
+script = ExtResource("10_iguf7")
+code = 1
+texture = SubResource("AtlasTexture_yhcek")
+targeting_mask = 9
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="HatchRightArm"]
+stream = ExtResource("14_provi")
+
+[node name="HatchLeftLeg" type="Node" parent="."]
+script = ExtResource("10_iguf7")
+code = 2
+texture = SubResource("AtlasTexture_yhcek")
+targeting_mask = 9
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="HatchLeftLeg"]
+stream = ExtResource("14_provi")
+
+[node name="HatchRightLeg" type="Node" parent="."]
+script = ExtResource("10_iguf7")
+code = 3
+texture = SubResource("AtlasTexture_yhcek")
+targeting_mask = 9
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="HatchRightLeg"]
+stream = ExtResource("14_provi")
