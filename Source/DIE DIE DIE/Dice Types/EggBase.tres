@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_bhmi0")
-types = Array[int]([6, 6, 7, 6, 8, 9])
+types = Array[int]([2, 6, 2, 6, 6, 6])
+pips = Array[int]([0, 1, 0, 2, 3, 4])
 texture = ExtResource("2_bhmi0")
 metadata/_custom_type_script = "uid://7it61584xc7g"

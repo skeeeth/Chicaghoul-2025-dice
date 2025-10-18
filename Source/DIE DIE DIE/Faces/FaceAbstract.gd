@@ -8,6 +8,7 @@ signal animation_finished #used in inherited use function
 @export var texture:Texture2D
 @export var targeting_req:int = 1
 @export var uses:int = 1
+@export var immutable:bool = false
 const _2D_FACE_DISPLAY = preload("uid://ba8l4kymsrm36")
 
 @export_flags("SELF:1","ALLIES:2","ENEMY:4") var targeting_mask = 8
@@ -17,7 +18,6 @@ func _ready() -> void:
 	for n in get_children():
 		if n is AudioStreamPlayer:
 			sound = n
-
 
 @abstract
 func use(source:Unit,targets:Array[Unit],pips:int) -> Signal

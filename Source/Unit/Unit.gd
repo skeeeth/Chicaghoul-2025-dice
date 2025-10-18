@@ -20,9 +20,11 @@ signal special_action_code(code:int) #called on face
 var die:Die
 var pip_mod:int = 0:
 	set(v):
-		pip_mod = v
 		if die:
+			if !die.get_face_type().immutable:
+				return
 			face_display.set_pips(unit_data.pips[die.faceup_side] + pip_mod)
+		pip_mod = v
 	get:
 		return pip_mod
 var uses_left:int = -1
@@ -46,7 +48,7 @@ var block:int = 0:
 		return block
 
 @export_category("Stats")
-@export_flags("Head:1","Arm:2","Leg:4") var type = 8
+@export_flags("Head:1","Arm:2","Leg:4") var type = 0
 @export var max_hp:int = 9
 @export var unit_data:LimbData = preload("uid://d2bi4e8nw4j7g")
 @export_category("Nodes")

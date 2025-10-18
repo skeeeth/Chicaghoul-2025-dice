@@ -66,6 +66,7 @@ offset_top = 182.0
 offset_right = 1169.0
 offset_bottom = 575.0
 type = 10
+max_hp = 3
 unit_data = ExtResource("10_50v5w")
 sprite = NodePath("../Sprites/EggLeftarm")
 
@@ -76,6 +77,7 @@ offset_top = 177.0
 offset_right = 2090.0
 offset_bottom = 570.0
 type = 10
+max_hp = 3
 unit_data = ExtResource("11_1543h")
 sprite = NodePath("../Sprites/EggRightarm")
 
@@ -86,6 +88,7 @@ offset_top = 753.0
 offset_right = 1534.0
 offset_bottom = 1146.0
 type = 12
+max_hp = 3
 unit_data = ExtResource("12_k05uj")
 sprite = NodePath("../Sprites/EggLeftleg")
 
@@ -96,5 +99,6 @@ offset_top = 768.0
 offset_right = 2115.0
 offset_bottom = 1161.0
 type = 12
+max_hp = 3
 unit_data = ExtResource("13_lra0s")
 sprite = NodePath("../Sprites/EggRightleg")

@@ -44,7 +44,7 @@ region = Rect2(135, 27, 8, 6)
 
 [node name="Node" type="Node" node_paths=PackedStringArray("directory")]
 script = ExtResource("1_pktno")
-directory = [NodePath("Attack"), NodePath("Block"), NodePath("Blank"), NodePath("Amp"), NodePath("Weaken"), NodePath("Vulnerable"), NodePath("HatchLeftArm"), NodePath("HatchRightArm"), NodePath("HatchLeftLeg"), NodePath("HatchRightLeg")]
+directory = [NodePath("Attack"), NodePath("Block"), NodePath("Blank"), NodePath("Amp"), NodePath("Weaken"), NodePath("Vulnerable"), NodePath("Special")]
 
 [node name="Attack" type="Node" parent="."]
 script = ExtResource("2_wytlj")
@@ -86,37 +86,11 @@ targeting_mask = 14
 [node name="Constrict" type="Node" parent="."]
 script = ExtResource("7_q5u3h")
 
-[node name="HatchLeftArm" type="Node" parent="."]
+[node name="Special" type="Node" parent="."]
 script = ExtResource("10_iguf7")
 texture = SubResource("AtlasTexture_yhcek")
+immutable = true
 targeting_mask = 9
 
-[node name="SoundEffect" type="AudioStreamPlayer" parent="HatchLeftArm"]
-stream = ExtResource("14_provi")
-
-[node name="HatchRightArm" type="Node" parent="."]
-script = ExtResource("10_iguf7")
-code = 1
-texture = SubResource("AtlasTexture_yhcek")
-targeting_mask = 9
-
-[node name="SoundEffect" type="AudioStreamPlayer" parent="HatchRightArm"]
-stream = ExtResource("14_provi")
-
-[node name="HatchLeftLeg" type="Node" parent="."]
-script = ExtResource("10_iguf7")
-code = 2
-texture = SubResource("AtlasTexture_yhcek")
-targeting_mask = 9
-
-[node name="SoundEffect" type="AudioStreamPlayer" parent="HatchLeftLeg"]
-stream = ExtResource("14_provi")
-
-[node name="HatchRightLeg" type="Node" parent="."]
-script = ExtResource("10_iguf7")
-code = 3
-texture = SubResource("AtlasTexture_yhcek")
-targeting_mask = 9
-
-[node name="SoundEffect" type="AudioStreamPlayer" parent="HatchRightLeg"]
+[node name="SoundEffect" type="AudioStreamPlayer" parent="Special"]
 stream = ExtResource("14_provi")
