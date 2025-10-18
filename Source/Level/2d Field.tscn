@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c7s2105hmxa22"]
+[gd_scene load_steps=23 format=3 uid="uid://c7s2105hmxa22"]
 
 [ext_resource type="PackedScene" uid="uid://dqah76ms2b768" path="res://Source/Level/World 3d/World.tscn" id="2_1nqvx"]
 [ext_resource type="Script" uid="uid://dc4pngsku15ca" path="res://Source/Level/sub_viewport_container.gd" id="2_sdw6a"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://37cqarhd8ksx" path="res://Source/Level/UpgradeManager.gd" id="13_7lnom"]
 [ext_resource type="PackedScene" uid="uid://dvu76a4reyt4k" path="res://Source/Unit/Enemy/Instances/Justice/LadyJustice.tscn" id="13_u7swl"]
 [ext_resource type="PackedScene" uid="uid://n5m1ritbmj0s" path="res://Source/Level/new_part_offer.tscn" id="14_7lnom"]
+[ext_resource type="Texture2D" uid="uid://7lt0m5dklyrx" path="res://Assets/Visual/dicememberment_bg2.png" id="16_6hft7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6x6jb"]
 atlas = ExtResource("6_6x6jb")
@@ -188,5 +189,10 @@ offset_right = 1937.0
 offset_bottom = 1110.0
 mouse_filter = 2
 color = Color(0.05, 0.05, 0.05, 0.5294118)
+
+[node name="DicemembermentBg2" type="Sprite2D" parent="."]
+z_index = -12
+position = Vector2(960, 546)
+texture = ExtResource("16_6hft7")
 
 [connection signal="pressed" from="End Turn" to="End Turn" method="_on_pressed"]

@@ -19,7 +19,10 @@ func on_unit_clicked(unit:Unit):
 	#unselect if is ally and not targeting
 	if !targeting_active:
 		if player_parts.has(unit):
-			unit.unselect()
+			if unit.die.locked:
+				unit.unselect()
+			else:
+				unit.die.selected.emit()
 		return
 	
 	for p in player_parts:
