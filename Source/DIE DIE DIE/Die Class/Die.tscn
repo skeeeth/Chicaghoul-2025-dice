@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvebhx051kr2j"]
+[gd_scene load_steps=8 format=3 uid="uid://dvebhx051kr2j"]
 
 [ext_resource type="Script" uid="uid://3ppeeoqqved8" path="res://Source/DIE DIE DIE/Die Class/DieClass.gd" id="1_u0xod"]
 [ext_resource type="Resource" uid="uid://d2bi4e8nw4j7g" path="res://Source/DIE DIE DIE/Dice Types/Default.tres" id="2_1shjc"]
 [ext_resource type="Texture2D" uid="uid://bv45n7yd5fdvp" path="res://icon.svg" id="2_8xc3e"]
+[ext_resource type="SpriteFrames" uid="uid://bmfmor00snwjo" path="res://Assets/Visual/Placeholder/PipFrames.tres" id="4_1shjc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u0xod"]
 friction = 0.2
@@ -31,12 +32,22 @@ sorting_offset = -0.01
 texture_filter = 0
 texture = ExtResource("2_8xc3e")
 
+[node name="Pip" type="AnimatedSprite3D" parent="SpriteF"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.25, 0)
+sprite_frames = ExtResource("4_1shjc")
+
 [node name="SpriteL" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.5, 0, 0)
 sorting_offset = -0.01
 axis = 0
 texture_filter = 0
 texture = ExtResource("2_8xc3e")
+
+[node name="Pip" type="AnimatedSprite3D" parent="SpriteL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -0.25)
+axis = 0
+sprite_frames = ExtResource("4_1shjc")
+frame = 2
 
 [node name="SpriteD" type="Sprite3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.5, 0)
@@ -45,6 +56,11 @@ axis = 1
 texture_filter = 0
 texture = ExtResource("2_8xc3e")
 
+[node name="Pip" type="AnimatedSprite3D" parent="SpriteD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.25)
+axis = 1
+sprite_frames = ExtResource("4_1shjc")
+
 [node name="SpriteR" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.5, 0, 0)
 sorting_offset = -0.01
@@ -52,11 +68,20 @@ axis = 0
 texture_filter = 0
 texture = ExtResource("2_8xc3e")
 
+[node name="Pip" type="AnimatedSprite3D" parent="SpriteR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0.25)
+axis = 0
+sprite_frames = ExtResource("4_1shjc")
+
 [node name="SpriteB" type="Sprite3D" parent="."]
 transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, -0.5)
 sorting_offset = -0.01
 texture_filter = 0
 texture = ExtResource("2_8xc3e")
+
+[node name="Pip" type="AnimatedSprite3D" parent="SpriteB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.25, 0)
+sprite_frames = ExtResource("4_1shjc")
 
 [node name="SpriteU" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -64,6 +89,11 @@ sorting_offset = -0.01
 axis = 1
 texture_filter = 0
 texture = ExtResource("2_8xc3e")
+
+[node name="Pip" type="AnimatedSprite3D" parent="SpriteU"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0.25)
+axis = 1
+sprite_frames = ExtResource("4_1shjc")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

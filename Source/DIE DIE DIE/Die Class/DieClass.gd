@@ -23,6 +23,13 @@ const directions:Array[Vector3] = [
 ]
 
 @onready var face_sprites:Array[Sprite3D] = [$SpriteF, $SpriteL, $SpriteD, $SpriteR, $SpriteB, $SpriteU]
+@onready var pip_sprites:Array[AnimatedSprite3D] = [
+		$SpriteF/Pip,
+		$SpriteL/Pip,
+		$SpriteD/Pip,
+		$SpriteR/Pip,
+		$SpriteB/Pip,
+		$SpriteU/Pip]
 
 func _ready() -> void:
 	set_faces_from_data(dieData)
@@ -33,10 +40,11 @@ func set_faces_from_data(data:LimbData):
 		face_sprites[i].texture = tex
 		face_sprites[i].pixel_size = 1.0/tex.get_size().x #assumes square texture
 		
-		var pip_display = AnimatedSprite3D.new()
+		var pip_display = pip_sprites[i]
 		pip_display.sprite_frames = PIP_FRAMES
 		pip_display.frame = data.pips[i] - 1 
 		pip_display.visible = data.pips[i] != 0
+		pip_display.sorting_offset = 0.25
 		pip_display.speed_scale = 0
 		pip_display.axis = face_sprites[i].axis
 		pip_display.pixel_size = 0.5 / \
@@ -54,7 +62,7 @@ func set_faces_from_data(data:LimbData):
 			#2: #z axis
 				#pip_display.position -= (Vector3(0,0,0.25))
 		
-		face_sprites[i].add_child(pip_display)
+		#face_sprites[i].add_child(pip_display)
 		
 #emitted from physics when dice settles,
 # reads face up side at this time
